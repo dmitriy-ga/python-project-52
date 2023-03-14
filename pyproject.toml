@@ -17,6 +17,7 @@ packages = [{include = "task_manager"}]
 python = "^3.10"
 django = "^4.1.7"
 python-dotenv = "^1.0.0"
+django-bootstrap4 = "^22.3"
 
 
 [build-system]
