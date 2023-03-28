@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap4 i18n %}
+
+{% block content %}
+<h1>{% translate "Task Manager Statuses" %}</h1>
+<a class="btn btn-primary btn-lg" href="{% url 'main_page' %}">{% translate "To main page" %}</a>
+<a class="btn btn-primary btn-lg" href="{% url 'statuses_create' %}">{% translate "Create status" %}</a>
+
+<div class="container">
+    <main>
+        {% for status in statuses %}
+        <p>{{ status.name }}
+            <a href="{% url 'statuses_update' status.id %}">Update</a>
+            <a href="{% url 'statuses_delete' status.id %}">Delete</a></p>
+        {% endfor %}
+    </main>
+</div>
+{% endblock content %}
