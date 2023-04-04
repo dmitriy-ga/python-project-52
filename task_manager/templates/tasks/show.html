@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load bootstrap4 i18n %}
+
+{% block content %}
+<h1>{% translate "Task Details" %}</h1>
+<a class="btn btn-primary btn-lg" href="{% url 'main_page' %}">{% translate "To main page" %}</a>
+<div class="container">
+    <main>
+        <table>
+            <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Name</td>
+                <td>{{ task.name }}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{ task.description }}</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>{{ task.author }}</td>
+            </tr>
+            <tr>
+                <td>Executor</td>
+                <td>{{ task.executor }}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{ task.status }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock content %}

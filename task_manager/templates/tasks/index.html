@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load bootstrap4 i18n %}
+
+{% block content %}
+<h1>{% translate "Task Manager Tasks" %}</h1>
+<a class="btn btn-primary btn-lg" href="{% url 'main_page' %}">{% translate "To main page" %}</a>
+<a class="btn btn-primary btn-lg" href="{% url 'tasks_create' %}">{% translate "Create task" %}</a>
+
+<div class="container">
+    <main>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Author</th>
+                <th>Executor</th>
+                <th>Manage</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td><a href="{% url 'tasks_show' task.id %}">{{ task.name }}</a></td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.author }}</td>
+                <td>{{ task.executor }}</td>
+                <td><a href="{% url 'tasks_update' task.id %}">Update</a><br>
+                    <a href="{% url 'tasks_delete' task.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock content %}
+
+
