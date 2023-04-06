@@ -34,6 +34,16 @@
                 <td>Status</td>
                 <td>{{ task.status }}</td>
             </tr>
+            <tr>
+                <td>Labels</td>
+                <td>
+                    <ul>
+                        {% for label in task.labels.all %}
+                            <li>{{ label.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
             </tbody>
         </table>
     </main>

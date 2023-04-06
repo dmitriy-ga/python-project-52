@@ -1,6 +1,7 @@
 from django.db import models
 from task_manager.users.models import User
 from task_manager.statuses.models import StatusModel
+from task_manager.labels.models import LabelModel
 
 
 class TaskModel(models.Model):
@@ -17,5 +18,13 @@ class TaskModel(models.Model):
     status = models.ForeignKey(StatusModel, on_delete=models.PROTECT,
                                related_name='status')
 
+    labels = models.ManyToManyField(LabelModel, through='LabelsThrough',
+                                    through_fields=('task', 'label'))
+
     def __str__(self):
         return self.name
+
+
+class LabelsThrough(models.Model):
+    label = models.ForeignKey(LabelModel, on_delete=models.PROTECT)
+    task = models.ForeignKey(TaskModel, on_delete=models.CASCADE)

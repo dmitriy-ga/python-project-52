@@ -21,7 +21,7 @@ class TasksCreate(CreateView):
     template_name = 'tasks/create.html'
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
-    fields = ['name', 'description', 'executor', 'status']
+    fields = ['name', 'description', 'executor', 'status', 'labels']
 
     def form_valid(self, form):
         form.instance.author_id = self.request.user.id
@@ -32,7 +32,7 @@ class TasksUpdate(UpdateView):
     template_name = 'tasks/update.html'
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
-    fields = ['name', 'description', 'executor', 'status']
+    fields = ['name', 'description', 'executor', 'status', 'labels']
     context_object_name = 'task'
     pk_url_kwarg = 'task_id'
 
