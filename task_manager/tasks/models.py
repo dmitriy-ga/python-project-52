@@ -19,7 +19,8 @@ class TaskModel(models.Model):
                                related_name='status')
 
     labels = models.ManyToManyField(LabelModel, through='LabelsThrough',
-                                    through_fields=('task', 'label'))
+                                    through_fields=('task', 'label'),
+                                    blank=True)
 
     def __str__(self):
         return self.name
