@@ -1,12 +1,14 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
+from django_filters.views import FilterView
 from django.urls import reverse_lazy
 from .models import TaskModel
+from .filters import TasksFilter
 
 
-class TasksIndex(ListView):
+class TasksIndex(FilterView):
     template_name = 'tasks/index.html'
-    model = TaskModel
+    filterset_class = TasksFilter
     context_object_name = 'tasks'
 
 
