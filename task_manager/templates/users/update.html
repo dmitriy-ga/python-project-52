@@ -16,7 +16,7 @@
             </ul>
         </div>
         {% endif %}
-        <form action="{% url 'users_update' user_id=user_id %}" method="post">
+        <form action="{% url 'users_update' user.id %}" method="post">
             {% csrf_token %}
             <table border="1">
                 {{ form }}
