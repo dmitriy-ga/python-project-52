@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from task_manager.users.models import User
-from task_manager.users.forms import SignupForm
+from task_manager.users.forms import SignupForm, UpdateForm
 
 
 class UsersIndex(ListView):
@@ -25,7 +25,7 @@ class UsersUpdate(UpdateView):
     success_url = reverse_lazy('users_index')
     context_object_name = 'user'
     pk_url_kwarg = 'user_id'
-    form_class = SignupForm
+    form_class = UpdateForm
 
     def dispatch(self, request, *args, **kwargs):
         # Only self user can update
