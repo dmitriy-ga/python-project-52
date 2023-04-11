@@ -3,9 +3,9 @@
 
 {% block content %}
 <h1>{% translate "Sure delete?" %}</h1>
-<h2>Status: {{ status }}</h2>
+<h2>{% translate "Status" %}: {{ status }}</h2>
 <form method="post">
     {% csrf_token %}
-    {% bootstrap_button 'Delete' button_type='submit' button_class='btn btn-lg btn-danger' %}
+    <input type="submit" value="{% translate 'Delete' %}">
 </form>
 {% endblock content %}

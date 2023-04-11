@@ -9,33 +9,33 @@
         <table>
             <thead>
             <tr>
-                <th>Variable</th>
-                <th>Value</th>
+                <th>{% translate "Variable" %}</th>
+                <th>{% translate "Value" %}</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>Name</td>
+                <td>{% translate "Name" %}</td>
                 <td>{{ task.name }}</td>
             </tr>
             <tr>
-                <td>Description</td>
+                <td>{% translate "Description" %}</td>
                 <td>{{ task.description }}</td>
             </tr>
             <tr>
-                <td>Author</td>
+                <td>{% translate "Author" %}</td>
                 <td>{{ task.author }}</td>
             </tr>
             <tr>
-                <td>Executor</td>
+                <td>{% translate "Executor" %}</td>
                 <td>{{ task.executor }}</td>
             </tr>
             <tr>
-                <td>Status</td>
+                <td>{% translate "Status" %}</td>
                 <td>{{ task.status }}</td>
             </tr>
             <tr>
-                <td>Labels</td>
+                <td>{% translate "Labels" %}</td>
                 <td>
                     <ul>
                         {% for label in task.labels.all %}

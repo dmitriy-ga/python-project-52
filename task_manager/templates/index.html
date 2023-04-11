@@ -2,8 +2,8 @@
 {% load bootstrap4 i18n %}
 
 {% block content %}
-<h1>{% translate "Task Manager Main Page" %}</h1>
-<h2>User: {{ user }}</h2>
+<h1>{% translate "Task Manager - Main Page" %}</h1>
+<h2>{% translate "Welcome" %}, {{ user }}!</h2>
 
 <a class="btn btn-primary btn-lg" href="{% url 'users_index' %}">{% translate "Users" %}</a>
 <a class="btn btn-primary btn-lg" href="{% url 'statuses_index' %}">{% translate "Statuses" %}</a>

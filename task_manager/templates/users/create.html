@@ -2,7 +2,7 @@
 {% load bootstrap4 i18n %}
 
 {% block content %}
-<h1>{% translate "Create User" %}</h1>
+<h1>{% translate "Create user" %}</h1>
 <a class="btn btn-primary btn-lg" href="/">{% translate "To main page" %}</a>
 
 <div class="container">
@@ -21,7 +21,7 @@
             <table border="1">
                 {{ form }}
             </table>
-            <input type="submit" value="Create">
+            <input type="submit" value="{% translate 'Create' %}">
         </form>
     </main>
 </div>

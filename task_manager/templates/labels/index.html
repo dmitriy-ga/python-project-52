@@ -2,7 +2,7 @@
 {% load bootstrap4 i18n %}
 
 {% block content %}
-<h1>{% translate "Task Manager Labels" %}</h1>
+<h1>{% translate "Task Manager - Labels" %}</h1>
 <a class="btn btn-primary btn-lg" href="{% url 'main_page' %}">{% translate "To main page" %}</a>
 <a class="btn btn-primary btn-lg" href="{% url 'labels_create' %}">{% translate "Create label" %}</a>
 
@@ -10,8 +10,8 @@
     <main>
         {% for label in labels %}
         <p>{{ label.name }}
-            <a href="{% url 'labels_update' label.id %}">Update</a>
-            <a href="{% url 'labels_delete' label.id %}">Delete</a></p>
+            <a href="{% url 'labels_update' label.id %}">{% translate "Update" %}</a>
+            <a href="{% url 'labels_delete' label.id %}">{% translate "Delete" %}</a></p>
         {% endfor %}
     </main>
 </div>

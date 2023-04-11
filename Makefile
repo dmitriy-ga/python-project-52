@@ -20,3 +20,9 @@ lint:
 	poetry run flake8 task_manager
 
 check: selfcheck test lint
+
+makemessages:
+	poetry run django-admin makemessages -l ru
+	
+compilemessages:
+	poetry run django-admin compilemessages

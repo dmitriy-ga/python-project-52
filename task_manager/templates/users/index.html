@@ -2,7 +2,7 @@
 {% load bootstrap4 i18n %}
 
 {% block content %}
-<h1>{% translate "Task Manager Users" %}</h1>
+<h1>{% translate "Task Manager - Users" %}</h1>
 <a class="btn btn-primary btn-lg" href="{% url 'main_page' %}">{% translate "To main page" %}</a>
 <a class="btn btn-primary btn-lg" href="{% url 'users_create' %}">{% translate "Create user" %}</a>
 
@@ -10,8 +10,8 @@
     <main>
         {% for user in users %}
         <p>{{ user.username }} : {{ user.get_full_name }}
-            <a href="{% url 'users_update' user.id %}">Update</a>
-            <a href="{% url 'users_delete' user.id %}">Delete</a></p>
+            <a href="{% url 'users_update' user.id %}">{% translate "Update" %}</a>
+            <a href="{% url 'users_delete' user.id %}">{% translate "Delete" %}</a></p>
         {% endfor %}
     </main>
 </div>
