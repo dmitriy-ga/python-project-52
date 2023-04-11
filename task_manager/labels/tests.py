@@ -1,9 +1,22 @@
 from django.test import TestCase
 from .models import LabelModel
+from task_manager.users.models import User
 
 
 class TestLabel(TestCase):
     def test_label(self):
+        # Create user and login
+        params = {
+            'username': 'author_user',
+            'first_name': 'Somename2',
+            'last_name': 'Somesurname2',
+            'password1': 'somelongpassword',
+            'password2': 'somelongpassword',
+        }
+        response = self.client.post('/users/create/', data=params)
+        self.assertEqual(response.status_code, 302)
+        self.client.force_login(User.objects.get(username='author_user'))
+
         # Index
         response = self.client.get('/labels/')
         self.assertEqual(response.status_code, 200)

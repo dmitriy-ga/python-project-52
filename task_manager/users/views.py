@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
@@ -26,6 +27,12 @@ class UsersUpdate(UpdateView):
     pk_url_kwarg = 'user_id'
     form_class = SignupForm
 
+    def dispatch(self, request, *args, **kwargs):
+        # Only self user can update
+        if request.user.id != self.get_object().id:
+            return redirect(reverse_lazy('users_index'))
+        return super().dispatch(request, *args, **kwargs)
+
 
 class UsersDelete(DeleteView):
     template_name = 'users/delete.html'
@@ -33,3 +40,9 @@ class UsersDelete(DeleteView):
     success_url = reverse_lazy('users_index')
     context_object_name = 'user'
     pk_url_kwarg = 'user_id'
+
+    def dispatch(self, request, *args, **kwargs):
+        # Only self user can delete
+        if request.user.id != self.get_object().id:
+            return redirect(reverse_lazy('users_index'))
+        return super().dispatch(request, *args, **kwargs)

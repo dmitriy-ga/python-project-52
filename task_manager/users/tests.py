@@ -24,6 +24,7 @@ class TestUsers(TestCase):
         self.assertEqual(created_user.first_name, params['first_name'])
 
         # Update
+        self.client.force_login(User.objects.get(username='tester_app'))
         response = self.client.get('/users/1/update/')
         self.assertEqual(response.status_code, 200)
         params = {
@@ -39,6 +40,7 @@ class TestUsers(TestCase):
         self.assertEqual(updated_user.first_name, params['first_name'])
 
         # Delete
+        self.client.force_login(User.objects.get(username='tester_app'))
         response = self.client.get('/users/1/delete/')
         self.assertEqual(response.status_code, 200)
         response = self.client.post('/users/1/delete/')
