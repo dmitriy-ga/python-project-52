@@ -1,5 +1,4 @@
-from django.contrib.auth.forms import \
-    UserCreationForm, AuthenticationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 
 
@@ -17,8 +16,7 @@ class LoginForm(AuthenticationForm):
     pass
 
 
-class UpdateForm(UserChangeForm):
-
-    class Meta(UserChangeForm.Meta):
-        model = user_model
-        fields = ('username', 'first_name', 'last_name')
+class UpdateForm(SignupForm):
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        return username
