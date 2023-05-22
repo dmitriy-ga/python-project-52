@@ -25,4 +25,4 @@ makemessages:
 	poetry run django-admin makemessages -l ru
 	
 compilemessages:
-	poetry run django-admin compilemessages
+	poetry run django-admin compilemessages --ignore .venv
