@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-11 13:54+0500\n"
+"POT-Creation-Date: 2023-05-22 14:16+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,50 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/labels/views.py:21
+msgid "Label created successfully"
+msgstr "Метка успешно создана"
+
+#: task_manager/labels/views.py:31
+msgid "Label updated successfully"
+msgstr "Метка успешно обновлена"
+
+#: task_manager/labels/views.py:40
+msgid "Label deleted successfully"
+msgstr "Метка успешно удалена"
+
+#: task_manager/statuses/views.py:21
+msgid "Status created successfully"
+msgstr "Статус успешно создан"
+
+#: task_manager/statuses/views.py:31
+msgid "Status updated successfully"
+msgstr "Статус успешно обновлён"
+
+#: task_manager/statuses/views.py:40
+msgid "Status deleted successfully"
+msgstr "Статус успешно удалён"
+
+#: task_manager/tasks/filters.py:9
+msgid "Self tasks only"
+msgstr "Только мои задачи"
+
+#: task_manager/tasks/views.py:32
+msgid "Task created successfully"
+msgstr "Задача успешно создана"
+
+#: task_manager/tasks/views.py:46
+msgid "Task updated successfully"
+msgstr "Задача успешно обновлена"
+
+#: task_manager/tasks/views.py:55
+msgid "Task deleted successfully"
+msgstr "Задача успешно удалена"
+
+#: task_manager/tasks/views.py:60
+msgid "Only author can delete this task"
+msgstr "Только автор может удалить эту задачу"
 
 #: task_manager/templates/base.html:10
 msgid "Task Manager"
@@ -227,3 +271,27 @@ msgstr "Менеджер Задач - Пользователи"
 #: task_manager/templates/users/update.html:5
 msgid "Update user"
 msgstr "Изменить пользователя"
+
+#: task_manager/users/views.py:24
+msgid "User created successfully"
+msgstr "Пользователь успешно создан"
+
+#: task_manager/users/views.py:34
+msgid "User updated successfully"
+msgstr "Пользователь успешно обновлён"
+
+#: task_manager/users/views.py:40
+msgid "You're cannot update this user"
+msgstr "Вы не можете обновить этого пользователя"
+
+#: task_manager/users/views.py:51
+msgid "User deleted successfully"
+msgstr "Пользователь успешно удалён"
+
+#: task_manager/users/views.py:57
+msgid "You're cannot delete this user"
+msgstr "Вы не можете удалить этого пользователя"
+
+#: task_manager/utils.py:11
+msgid "You're not logged in, please login"
+msgstr "Вы не вошли, пожалуйста войдите"
