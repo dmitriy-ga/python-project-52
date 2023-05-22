@@ -7,6 +7,7 @@ from task_manager.users.forms import SignupForm, UpdateForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.utils import RedirectToLoginMixin
 from django.contrib import messages
+from django.utils.translation import gettext as _
 
 
 class UsersIndex(ListView):
@@ -20,7 +21,7 @@ class UsersCreate(SuccessMessageMixin, CreateView):
     model = User
     success_url = reverse_lazy('login')
     form_class = SignupForm
-    success_message = 'User created successfully'
+    success_message = _('User created successfully')
 
 
 class UsersUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
@@ -30,13 +31,13 @@ class UsersUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     context_object_name = 'user'
     pk_url_kwarg = 'user_id'
     form_class = UpdateForm
-    success_message = 'User updated successfully'
+    success_message = _('User updated successfully')
 
     def dispatch(self, request, *args, **kwargs):
         # Only self user can update
         if all((request.user.is_authenticated,
                 request.user.id != self.get_object().id)):
-            messages.error(self.request, "You're cannot update this user")
+            messages.error(self.request, _("You're cannot update this user"))
             return redirect(reverse_lazy('users_index'))
         return super().dispatch(request, *args, **kwargs)
 
@@ -47,12 +48,12 @@ class UsersDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
     success_url = reverse_lazy('users_index')
     context_object_name = 'user'
     pk_url_kwarg = 'user_id'
-    success_message = 'User deleted successfully'
+    success_message = _('User deleted successfully')
 
     def dispatch(self, request, *args, **kwargs):
         # Only self user can delete
         if all((request.user.is_authenticated,
                 request.user.id != self.get_object().id)):
-            messages.error(self.request, "You're cannot delete this user")
+            messages.error(self.request, _("You're cannot delete this user"))
             return redirect(reverse_lazy('users_index'))
         return super().dispatch(request, *args, **kwargs)

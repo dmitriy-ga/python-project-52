@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import TaskModel
 from .filters import TasksFilter
+from django.utils.translation import gettext as _
 
 
 class TasksIndex(RedirectToLoginMixin, FilterView):
@@ -28,7 +29,7 @@ class TasksCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
     fields = ['name', 'description', 'executor', 'status', 'labels']
-    success_message = 'Task created successfully'
+    success_message = _('Task created successfully')
 
     def form_valid(self, form):
         form.instance.author_id = self.request.user.id
@@ -42,7 +43,7 @@ class TasksUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     fields = ['name', 'description', 'executor', 'status', 'labels']
     context_object_name = 'task'
     pk_url_kwarg = 'task_id'
-    success_message = 'Task updated successfully'
+    success_message = _('Task updated successfully')
 
 
 class TasksDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
@@ -51,11 +52,11 @@ class TasksDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
     success_url = reverse_lazy('tasks_index')
     context_object_name = 'task'
     pk_url_kwarg = 'task_id'
-    success_message = 'Task deleted successfully'
+    success_message = _('Task deleted successfully')
 
     def dispatch(self, request, *args, **kwargs):
         # Only author can delete task
         if request.user.id != self.get_object().author.id:
-            messages.error(self.request, 'Only author can delete this task')
+            messages.error(self.request, _('Only author can delete this task'))
             return redirect(reverse_lazy('tasks_index'))
         return super().dispatch(request, *args, **kwargs)

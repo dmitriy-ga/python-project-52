@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from django.urls import reverse_lazy
 from .models import StatusModel
 from task_manager.utils import RedirectToLoginMixin
+from django.utils.translation import gettext as _
 
 
 class StatusesIndex(RedirectToLoginMixin, ListView):
@@ -17,7 +18,7 @@ class StatusesCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     model = StatusModel
     success_url = reverse_lazy('statuses_index')
     fields = ['name', ]
-    success_message = 'Status created successfully'
+    success_message = _('Status created successfully')
 
 
 class StatusesUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
@@ -27,7 +28,7 @@ class StatusesUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     fields = ['name', ]
     context_object_name = 'status'
     pk_url_kwarg = 'status_id'
-    success_message = 'Status updated successfully'
+    success_message = _('Status updated successfully')
 
 
 class StatusesDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
@@ -36,4 +37,4 @@ class StatusesDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
     success_url = reverse_lazy('statuses_index')
     context_object_name = 'status'
     pk_url_kwarg = 'status_id'
-    success_message = 'Status deleted successfully'
+    success_message = _('Status deleted successfully')

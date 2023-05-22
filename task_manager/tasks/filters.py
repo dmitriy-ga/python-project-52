@@ -1,11 +1,12 @@
 from django_filters import FilterSet, BooleanFilter
 from django import forms
 from .models import TaskModel
+from django.utils.translation import gettext as _
 
 
 class TasksFilter(FilterSet):
     self_task = BooleanFilter(widget=forms.CheckboxInput(),
-                              label='Self tasks only',
+                              label=_('Self tasks only'),
                               method='get_self_tasks')
 
     class Meta:

@@ -4,6 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import LabelModel
 from task_manager.utils import RedirectToLoginMixin
+from django.utils.translation import gettext as _
 
 
 class LabelsIndex(RedirectToLoginMixin, ListView):
@@ -17,7 +18,7 @@ class LabelsCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     model = LabelModel
     success_url = reverse_lazy('labels_index')
     fields = ['name', ]
-    success_message = 'Label created successfully'
+    success_message = _('Label created successfully')
 
 
 class LabelsUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
@@ -27,7 +28,7 @@ class LabelsUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     fields = ['name', ]
     context_object_name = 'label'
     pk_url_kwarg = 'label_id'
-    success_message = 'Label updated successfully'
+    success_message = _('Label updated successfully')
 
 
 class LabelsDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
@@ -36,4 +37,4 @@ class LabelsDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
     success_url = reverse_lazy('labels_index')
     context_object_name = 'label'
     pk_url_kwarg = 'label_id'
-    success_message = 'Label deleted successfully'
+    success_message = _('Label deleted successfully')
