@@ -14,7 +14,7 @@ Task Manager - redmine-like project management web application. Users can operat
 - django-bootstrap4 (23.1 or newer)
 - rollbar (0.16 or newer)
 - gunicorn (20.1 or newer)
-- dj-database-url (2.0 or newer)
+- dj-database-url (0.5.0)
 - psycopg2-binary (2.9 or newer)
 
 ### Additional dev-dependencies
