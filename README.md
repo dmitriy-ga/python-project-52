@@ -25,7 +25,7 @@ Can be also collected from .env file in root project folder
 
 | Key                   | Description                             | Value      |
 |-----------------------|-----------------------------------------|------------|
-| DJANGO_SECRET_KEY     | Django secret key for database signing  | Key string |
+| SECRET_KEY            | Django secret key for database signing  | Key string |
 | DJANGO_DEBUG          | Debug mode for development purposes     | True/False |
 | ROLLBAR_ACCESS_TOKEN  | Access key for Rollbar reporting        | Key string |
 | DISABLE_COLLECTSTATIC | Disabling static files processing       | 0/1        |
