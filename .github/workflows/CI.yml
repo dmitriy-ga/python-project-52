@@ -22,7 +22,7 @@
             make install
         - name: Run linter and tests
           env: 
-            DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+            DJANGO_SECRET_KEY: ${{ secrets.SECRET_KEY }}
           run: |
             make migrate
             make check
