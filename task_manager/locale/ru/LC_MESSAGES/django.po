@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 14:04+0500\n"
+"POT-Creation-Date: 2023-05-24 16:40+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,7 @@ msgstr "Создать метку"
 #: task_manager/templates/labels/create.html:6
 #: task_manager/templates/labels/index.html:6
 #: task_manager/templates/labels/update.html:6
-#: task_manager/templates/login.html:6
+#: task_manager/templates/login.html:7
 #: task_manager/templates/statuses/create.html:6
 #: task_manager/templates/statuses/index.html:6
 #: task_manager/templates/statuses/update.html:6
@@ -175,17 +175,17 @@ msgstr "Изменить"
 msgid "Update label"
 msgstr "Изменить метку"
 
-#: task_manager/templates/login.html:5
+#: task_manager/templates/login.html:6
 msgid "Task Manager - Log In"
 msgstr "Менеджер Задач - Вход"
 
-#: task_manager/templates/login.html:7
+#: task_manager/templates/login.html:8
 #: task_manager/templates/users/create.html:5
 #: task_manager/templates/users/index.html:7
 msgid "Create user"
 msgstr "Создать пользователя"
 
-#: task_manager/templates/login.html:22
+#: task_manager/templates/login.html:23
 msgid "Submit"
 msgstr "Отправить"
 
@@ -271,14 +271,6 @@ msgstr "Менеджер Задач - Пользователи"
 #: task_manager/templates/users/update.html:5
 msgid "Update user"
 msgstr "Изменить пользователя"
-
-#: task_manager/users/forms.py:20
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: task_manager/users/forms.py:23 task_manager/users/forms.py:26
-msgid "Password"
-msgstr "Пароль"
 
 #: task_manager/users/views.py:24
 msgid "User created successfully"

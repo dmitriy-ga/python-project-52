@@ -1,8 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, \
-    UsernameField
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
-from django.utils.translation import gettext as _
-from django import forms
 
 
 user_model = get_user_model()
@@ -16,15 +13,7 @@ class SignupForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = UsernameField(widget=forms.TextInput(
-        attrs={"autofocus": True, "placeholder": _("Username")}))
-
-    password = forms.CharField(
-        label=_("Password"),
-        strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "current-password",
-                                          "placeholder": _("Password")}),
-    )
+    pass
 
 
 class UpdateForm(SignupForm):
