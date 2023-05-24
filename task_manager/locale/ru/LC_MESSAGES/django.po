@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 14:16+0500\n"
+"POT-Creation-Date: 2023-05-24 14:04+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,17 +93,17 @@ msgstr "Задачи"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/templates/index.html:12
+#: task_manager/templates/index.html:13
+msgid "Log Out"
+msgstr "Выход"
+
+#: task_manager/templates/index.html:15
 msgid "Log In"
 msgstr "Вход"
 
-#: task_manager/templates/index.html:13
+#: task_manager/templates/index.html:16
 msgid "Sign Up"
 msgstr "Регистрация"
-
-#: task_manager/templates/index.html:14
-msgid "Log Out"
-msgstr "Выход"
 
 #: task_manager/templates/labels/create.html:5
 #: task_manager/templates/labels/index.html:7
@@ -271,6 +271,14 @@ msgstr "Менеджер Задач - Пользователи"
 #: task_manager/templates/users/update.html:5
 msgid "Update user"
 msgstr "Изменить пользователя"
+
+#: task_manager/users/forms.py:20
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/users/forms.py:23 task_manager/users/forms.py:26
+msgid "Password"
+msgstr "Пароль"
 
 #: task_manager/users/views.py:24
 msgid "User created successfully"
