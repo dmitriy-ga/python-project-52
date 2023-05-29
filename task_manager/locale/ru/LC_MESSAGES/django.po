@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 10:41+0500\n"
+"POT-Creation-Date: 2023-05-29 11:06+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,10 +127,10 @@ msgstr "Создать метку"
 msgid "To main page"
 msgstr "На главную"
 
-#: task_manager/templates/labels/create.html:24
-#: task_manager/templates/statuses/create.html:24
-#: task_manager/templates/tasks/create.html:24
-#: task_manager/templates/users/create.html:24
+#: task_manager/templates/labels/create.html:22
+#: task_manager/templates/statuses/create.html:22
+#: task_manager/templates/tasks/create.html:22
+#: task_manager/templates/users/create.html:22
 msgid "Create"
 msgstr "Создать"
 
@@ -161,13 +161,13 @@ msgid "Task Manager - Labels"
 msgstr "Менеджер Задач - Метки"
 
 #: task_manager/templates/labels/index.html:13
-#: task_manager/templates/labels/update.html:24
+#: task_manager/templates/labels/update.html:22
 #: task_manager/templates/statuses/index.html:13
-#: task_manager/templates/statuses/update.html:24
+#: task_manager/templates/statuses/update.html:22
 #: task_manager/templates/tasks/index.html:34
-#: task_manager/templates/tasks/update.html:24
+#: task_manager/templates/tasks/update.html:22
 #: task_manager/templates/users/index.html:13
-#: task_manager/templates/users/update.html:24
+#: task_manager/templates/users/update.html:22
 msgid "Update"
 msgstr "Изменить"
 

@@ -18,10 +18,8 @@
         {% endif %}
         <form action="{% url 'labels_create' %}" method="post">
             {% csrf_token %}
-            <table border="1">
-                {{ form }}
-            </table>
-            <input type="submit" value="{% translate 'Create' %}">
+            {% bootstrap_form form %}
+            <input class="btn btn-primary btn-lg" type="submit" value="{% translate 'Create' %}">
         </form>
     </main>
 </div>
