@@ -21,7 +21,7 @@ class UsersCreate(SuccessMessageMixin, CreateView):
     model = User
     success_url = reverse_lazy('login')
     form_class = SignupForm
-    success_message = _('User created successfully')
+    success_message = _('User signed up successfully')
 
 
 class UsersUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
