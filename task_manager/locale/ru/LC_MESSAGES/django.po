@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-24 17:05+0500\n"
+"POT-Creation-Date: 2023-05-29 10:19+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -296,6 +296,10 @@ msgstr "Вы не можете удалить этого пользовател�
 msgid "You're not logged in, please login"
 msgstr "Вы не вошли, пожалуйста войдите"
 
-#: task_manager/views.py:15
+#: task_manager/views.py:16
 msgid "You are logged in"
 msgstr "Вы залогинены"
+
+#: task_manager/views.py:22
+msgid "You are logged out"
+msgstr "Вы разлогинены"
