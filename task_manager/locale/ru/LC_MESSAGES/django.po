@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 10:19+0500\n"
+"POT-Creation-Date: 2023-05-29 10:41+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "Метки"
 msgid "Log Out"
 msgstr "Выход"
 
-#: task_manager/templates/index.html:15
+#: task_manager/templates/index.html:15 task_manager/templates/login.html:8
 msgid "Log In"
 msgstr "Вход"
 
@@ -179,13 +179,13 @@ msgstr "Изменить метку"
 msgid "Task Manager - Log In"
 msgstr "Менеджер Задач - Вход"
 
-#: task_manager/templates/login.html:8
+#: task_manager/templates/login.html:9
 #: task_manager/templates/users/create.html:5
 #: task_manager/templates/users/index.html:7
 msgid "Create user"
 msgstr "Создать пользователя"
 
-#: task_manager/templates/login.html:23
+#: task_manager/templates/login.html:24
 msgid "Login"
 msgstr "Войти"
 
