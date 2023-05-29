@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 11:36+0500\n"
+"POT-Creation-Date: 2023-05-29 12:24+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,7 +76,7 @@ msgstr "Менеджер Задач - Главная страница"
 msgid "Welcome"
 msgstr "Добро пожаловать"
 
-#: task_manager/templates/index.html:8
+#: task_manager/templates/index.html:8 task_manager/templates/login.html:10
 msgid "Users"
 msgstr "Пользователи"
 
@@ -184,7 +184,7 @@ msgstr "Менеджер Задач - Вход"
 msgid "Create user"
 msgstr "Создать пользователя"
 
-#: task_manager/templates/login.html:24
+#: task_manager/templates/login.html:25
 msgid "Login"
 msgstr "Войти"
 
