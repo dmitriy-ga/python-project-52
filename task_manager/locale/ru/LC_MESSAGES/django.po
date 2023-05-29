@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 11:06+0500\n"
+"POT-Creation-Date: 2023-05-29 11:23+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,7 +130,6 @@ msgstr "На главную"
 #: task_manager/templates/labels/create.html:22
 #: task_manager/templates/statuses/create.html:22
 #: task_manager/templates/tasks/create.html:22
-#: task_manager/templates/users/create.html:22
 msgid "Create"
 msgstr "Создать"
 
@@ -259,6 +258,10 @@ msgstr "Описание"
 #: task_manager/templates/tasks/update.html:5
 msgid "Update task"
 msgstr "Изменить задачу"
+
+#: task_manager/templates/users/create.html:22
+msgid "Signup"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/users/delete.html:6
 msgid "User"
