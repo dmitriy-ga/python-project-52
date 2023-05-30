@@ -6,6 +6,6 @@
 <h2>{% translate "Task" %}: {{ task }}</h2>
 <form method="post">
     {% csrf_token %}
-    <input type="submit" value="{% translate 'Delete' %}">
+    <input type="submit" value="{% translate 'Yes, delete' %}">
 </form>
 {% endblock content %}
