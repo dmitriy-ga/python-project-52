@@ -8,10 +8,10 @@
 <div class="container">
     <main>
         <form method="get">
-            {{ filter.form.as_p }}
-            <input type="submit">
+            {% bootstrap_form filter.form %}
+            <input class="btn btn-primary" type="submit">
         </form>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
