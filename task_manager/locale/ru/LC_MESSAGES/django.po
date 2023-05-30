@@ -26,7 +26,7 @@ msgstr "Метка успешно создана"
 
 #: task_manager/labels/views.py:31
 msgid "Label updated successfully"
-msgstr "Метка успешно обновлена"
+msgstr "Метка успешно изменена"
 
 #: task_manager/labels/views.py:40
 msgid "Label deleted successfully"
@@ -38,11 +38,11 @@ msgstr "Статус успешно создан"
 
 #: task_manager/statuses/views.py:31
 msgid "Status updated successfully"
-msgstr "Статус успешно обновлён"
+msgstr "Статус успешно изменен"
 
 #: task_manager/statuses/views.py:40
 msgid "Status deleted successfully"
-msgstr "Статус успешно удалён"
+msgstr "Статус успешно удален"
 
 #: task_manager/tasks/filters.py:9
 msgid "Self tasks only"
@@ -54,7 +54,7 @@ msgstr "Задача успешно создана"
 
 #: task_manager/tasks/views.py:46
 msgid "Task updated successfully"
-msgstr "Задача успешно обновлена"
+msgstr "Задача успешно изменена"
 
 #: task_manager/tasks/views.py:55
 msgid "Task deleted successfully"
@@ -290,7 +290,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/users/views.py:34
 msgid "User updated successfully"
-msgstr "Пользователь успешно обновлён"
+msgstr "Пользователь успешно изменен"
 
 #: task_manager/users/views.py:40
 msgid "You're cannot update this user"
@@ -298,7 +298,7 @@ msgstr "Вы не можете обновить этого пользовате�
 
 #: task_manager/users/views.py:51
 msgid "User deleted successfully"
-msgstr "Пользователь успешно удалён"
+msgstr "Пользователь успешно удален"
 
 #: task_manager/users/views.py:57
 msgid "You're cannot delete this user"
