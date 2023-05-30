@@ -6,13 +6,31 @@
 <a class="btn btn-primary btn-lg" href="{% url 'main_page' %}">{% translate "To main page" %}</a>
 <a class="btn btn-primary btn-lg" href="{% url 'users_create' %}">{% translate "Create user" %}</a>
 
+{% if users %}
 <div class="container">
     <main>
-        {% for user in users %}
-        <p>{{ user.username }} : {{ user.get_full_name }}
-            <a href="{% url 'users_update' user.id %}">{% translate "Update" %}</a>
-            <a href="{% url 'users_delete' user.id %}">{% translate "Delete" %}</a></p>
-        {% endfor %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>{% translate "Username" %}</th>
+                <th>{% translate "Full name" %}</th>
+                <th>{% translate "Manage" %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.get_full_name }}</td>
+                <td><a href="{% url 'users_update' user.id %}">{% translate "Update" %}</a><br>
+                    <a href="{% url 'users_delete' user.id %}">{% translate "Delete" %}</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </main>
 </div>
+{% endif %} 
 {% endblock content %}
