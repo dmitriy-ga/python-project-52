@@ -3,7 +3,6 @@
 
 {% block content %}
 <h1>{% translate "Task Manager - Users" %}</h1>
-<a class="btn btn-primary btn-lg" href="{% url 'main_page' %}">{% translate "To main page" %}</a>
 <a class="btn btn-primary btn-lg" href="{% url 'users_create' %}">{% translate "Create user" %}</a>
 
 {% if users %}

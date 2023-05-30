@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-30 09:56+0500\n"
+"POT-Creation-Date: 2023-05-30 13:18+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "Задача успешно удалена"
 msgid "Only author can delete this task"
 msgstr "Только автор может удалить эту задачу"
 
-#: task_manager/templates/base.html:10
+#: task_manager/templates/base.html:10 task_manager/templates/navigation.html:4
 msgid "Task Manager"
 msgstr "Менеджер Задач"
 
@@ -76,60 +76,14 @@ msgstr "Менеджер Задач - Главная страница"
 msgid "Welcome"
 msgstr "Добро пожаловать"
 
-#: task_manager/templates/index.html:8 task_manager/templates/login.html:10
-msgid "Users"
-msgstr "Пользователи"
-
-#: task_manager/templates/index.html:9
-msgid "Statuses"
-msgstr "Статусы"
-
-#: task_manager/templates/index.html:10
-msgid "Tasks"
-msgstr "Задачи"
-
-#: task_manager/templates/index.html:11
-#: task_manager/templates/tasks/show.html:38
-msgid "Labels"
-msgstr "Метки"
-
-#: task_manager/templates/index.html:13
-msgid "Log Out"
-msgstr "Выход"
-
-#: task_manager/templates/index.html:15 task_manager/templates/login.html:8
-msgid "Log In"
-msgstr "Вход"
-
-#: task_manager/templates/index.html:16
-msgid "Sign Up"
-msgstr "Регистрация"
-
 #: task_manager/templates/labels/create.html:5
-#: task_manager/templates/labels/index.html:7
+#: task_manager/templates/labels/index.html:6
 msgid "Create label"
 msgstr "Создать метку"
 
-#: task_manager/templates/labels/create.html:6
-#: task_manager/templates/labels/index.html:6
-#: task_manager/templates/labels/update.html:6
-#: task_manager/templates/login.html:7
-#: task_manager/templates/statuses/create.html:6
-#: task_manager/templates/statuses/index.html:6
-#: task_manager/templates/statuses/update.html:6
-#: task_manager/templates/tasks/create.html:6
-#: task_manager/templates/tasks/index.html:6
-#: task_manager/templates/tasks/show.html:6
-#: task_manager/templates/tasks/update.html:6
-#: task_manager/templates/users/create.html:6
-#: task_manager/templates/users/index.html:6
-#: task_manager/templates/users/update.html:6
-msgid "To main page"
-msgstr "На главную"
-
-#: task_manager/templates/labels/create.html:22
-#: task_manager/templates/statuses/create.html:22
-#: task_manager/templates/tasks/create.html:22
+#: task_manager/templates/labels/create.html:21
+#: task_manager/templates/statuses/create.html:21
+#: task_manager/templates/tasks/create.html:21
 msgid "Create"
 msgstr "Создать"
 
@@ -155,21 +109,21 @@ msgstr "Да, удалить"
 msgid "Task Manager - Labels"
 msgstr "Менеджер Задач - Метки"
 
-#: task_manager/templates/labels/index.html:13
-#: task_manager/templates/labels/update.html:22
-#: task_manager/templates/statuses/index.html:13
-#: task_manager/templates/statuses/update.html:22
-#: task_manager/templates/tasks/index.html:34
-#: task_manager/templates/tasks/update.html:22
-#: task_manager/templates/users/index.html:27
-#: task_manager/templates/users/update.html:22
+#: task_manager/templates/labels/index.html:12
+#: task_manager/templates/labels/update.html:21
+#: task_manager/templates/statuses/index.html:12
+#: task_manager/templates/statuses/update.html:21
+#: task_manager/templates/tasks/index.html:33
+#: task_manager/templates/tasks/update.html:21
+#: task_manager/templates/users/index.html:26
+#: task_manager/templates/users/update.html:21
 msgid "Update"
 msgstr "Изменить"
 
-#: task_manager/templates/labels/index.html:14
-#: task_manager/templates/statuses/index.html:14
-#: task_manager/templates/tasks/index.html:35
-#: task_manager/templates/users/index.html:28
+#: task_manager/templates/labels/index.html:13
+#: task_manager/templates/statuses/index.html:13
+#: task_manager/templates/tasks/index.html:34
+#: task_manager/templates/users/index.html:27
 msgid "Delete"
 msgstr "Удалить"
 
@@ -181,24 +135,47 @@ msgstr "Изменить метку"
 msgid "Task Manager - Log In"
 msgstr "Менеджер Задач - Вход"
 
-#: task_manager/templates/login.html:9
-#: task_manager/templates/users/create.html:5
-#: task_manager/templates/users/index.html:7
-msgid "Create user"
-msgstr "Создать пользователя"
-
-#: task_manager/templates/login.html:25
+#: task_manager/templates/login.html:21
 msgid "Login"
 msgstr "Войти"
 
+#: task_manager/templates/navigation.html:13
+msgid "Users"
+msgstr "Пользователи"
+
+#: task_manager/templates/navigation.html:16
+msgid "Statuses"
+msgstr "Статусы"
+
+#: task_manager/templates/navigation.html:19
+msgid "Tasks"
+msgstr "Задачи"
+
+#: task_manager/templates/navigation.html:22
+#: task_manager/templates/tasks/show.html:37
+msgid "Labels"
+msgstr "Метки"
+
+#: task_manager/templates/navigation.html:26
+msgid "Log Out"
+msgstr "Выход"
+
+#: task_manager/templates/navigation.html:30
+msgid "Log In"
+msgstr "Вход"
+
+#: task_manager/templates/navigation.html:33
+msgid "Sign Up"
+msgstr "Регистрация"
+
 #: task_manager/templates/statuses/create.html:5
-#: task_manager/templates/statuses/index.html:7
+#: task_manager/templates/statuses/index.html:6
 msgid "Create status"
 msgstr "Создать статус"
 
 #: task_manager/templates/statuses/delete.html:6
-#: task_manager/templates/tasks/index.html:20
-#: task_manager/templates/tasks/show.html:34
+#: task_manager/templates/tasks/index.html:19
+#: task_manager/templates/tasks/show.html:33
 msgid "Status"
 msgstr "Статус"
 
@@ -211,7 +188,7 @@ msgid "Update status"
 msgstr "Изменить статус"
 
 #: task_manager/templates/tasks/create.html:5
-#: task_manager/templates/tasks/index.html:7
+#: task_manager/templates/tasks/index.html:6
 msgid "Create task"
 msgstr "Создать задачу"
 
@@ -223,23 +200,23 @@ msgstr "Задача"
 msgid "Task Manager - Tasks"
 msgstr "Менеджер Задач - Задачи"
 
-#: task_manager/templates/tasks/index.html:19
-#: task_manager/templates/tasks/show.html:18
+#: task_manager/templates/tasks/index.html:18
+#: task_manager/templates/tasks/show.html:17
 msgid "Name"
 msgstr "Название"
 
-#: task_manager/templates/tasks/index.html:21
-#: task_manager/templates/tasks/show.html:26
+#: task_manager/templates/tasks/index.html:20
+#: task_manager/templates/tasks/show.html:25
 msgid "Author"
 msgstr "Создатель"
 
-#: task_manager/templates/tasks/index.html:22
-#: task_manager/templates/tasks/show.html:30
+#: task_manager/templates/tasks/index.html:21
+#: task_manager/templates/tasks/show.html:29
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/templates/tasks/index.html:23
-#: task_manager/templates/users/index.html:18
+#: task_manager/templates/tasks/index.html:22
+#: task_manager/templates/users/index.html:17
 msgid "Manage"
 msgstr "Управление"
 
@@ -247,15 +224,15 @@ msgstr "Управление"
 msgid "Task Details"
 msgstr "Детали Задачи"
 
-#: task_manager/templates/tasks/show.html:12
+#: task_manager/templates/tasks/show.html:11
 msgid "Variable"
 msgstr "Параметр"
 
-#: task_manager/templates/tasks/show.html:13
+#: task_manager/templates/tasks/show.html:12
 msgid "Value"
 msgstr "Значение"
 
-#: task_manager/templates/tasks/show.html:22
+#: task_manager/templates/tasks/show.html:21
 msgid "Description"
 msgstr "Описание"
 
@@ -263,7 +240,12 @@ msgstr "Описание"
 msgid "Update task"
 msgstr "Изменить задачу"
 
-#: task_manager/templates/users/create.html:22
+#: task_manager/templates/users/create.html:5
+#: task_manager/templates/users/index.html:6
+msgid "Create user"
+msgstr "Создать пользователя"
+
+#: task_manager/templates/users/create.html:21
 msgid "Signup"
 msgstr "Зарегистрировать"
 
@@ -275,11 +257,11 @@ msgstr "Пользователь"
 msgid "Task Manager - Users"
 msgstr "Менеджер Задач - Пользователи"
 
-#: task_manager/templates/users/index.html:16
+#: task_manager/templates/users/index.html:15
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: task_manager/templates/users/index.html:17
+#: task_manager/templates/users/index.html:16
 msgid "Full name"
 msgstr "Полное имя"
 

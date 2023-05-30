@@ -4,10 +4,6 @@
 
 {% block content %}
 <h1>{% translate "Task Manager - Log In" %}</h1>
-<a class="btn btn-primary btn-lg" href="/">{% translate "To main page" %}</a>
-<a class="btn btn-primary btn-lg" href="{% url 'login' %}">{% translate "Log In" %}</a>
-<a class="btn btn-primary btn-lg" href="/users/create">{% translate "Create user" %}</a>
-<a class="btn btn-primary btn-lg" href="{% url 'users_index' %}">{% translate "Users" %}</a>
 
 {% if form.subject.errors %}
 <div>
