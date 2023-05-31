@@ -5,13 +5,29 @@
 <h1>{% translate "Task Manager - Labels" %}</h1>
 <a class="btn btn-primary btn-lg" href="{% url 'labels_create' %}">{% translate "Create label" %}</a>
 
+{% if labels %}
 <div class="container">
     <main>
-        {% for label in labels %}
-        <p>{{ label.name }}
-            <a href="{% url 'labels_update' label.id %}">{% translate "Update" %}</a>
-            <a href="{% url 'labels_delete' label.id %}">{% translate "Delete" %}</a></p>
-        {% endfor %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>{% translate "Name" %}</th>
+                <th>{% translate "Manage" %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for label in labels %}
+            <tr>
+                <td>{{ label.id }}</td>
+                <td>{{ label.name }}</td>
+                <td><a href="{% url 'labels_update' label.id %}">{% translate "Update" %}</a><br>
+                    <a href="{% url 'labels_delete' label.id %}">{% translate "Delete" %}</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </main>
 </div>
+{% endif %}
 {% endblock content %}
