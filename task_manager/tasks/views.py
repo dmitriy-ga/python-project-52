@@ -28,7 +28,7 @@ class TasksCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     template_name = 'tasks/create.html'
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
-    fields = ['name', 'description', 'executor', 'status', 'labels']
+    fields = ['name', 'description', 'status', 'executor', 'labels']
     success_message = _('Task created successfully')
 
     def form_valid(self, form):
@@ -40,7 +40,7 @@ class TasksUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     template_name = 'tasks/update.html'
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
-    fields = ['name', 'description', 'executor', 'status', 'labels']
+    fields = ['name', 'description', 'status', 'executor', 'labels']
     context_object_name = 'task'
     pk_url_kwarg = 'task_id'
     success_message = _('Task updated successfully')
