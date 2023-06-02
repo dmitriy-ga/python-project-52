@@ -71,7 +71,7 @@ msgstr "статус"
 
 #: task_manager/tasks/models.py:27
 msgid "labels"
-msgstr "метки"
+msgstr "метка"
 
 #: task_manager/tasks/views.py:32
 msgid "Task created successfully"
