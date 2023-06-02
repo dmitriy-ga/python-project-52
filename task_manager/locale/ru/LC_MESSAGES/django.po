@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 12:37+0500\n"
+"POT-Creation-Date: 2023-06-02 10:07+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,11 @@ msgstr "Статус успешно изменен"
 msgid "Status deleted successfully"
 msgstr "Статус успешно удален"
 
-#: task_manager/tasks/filters.py:9
+#: task_manager/tasks/filters.py:10 task_manager/templates/labels/delete.html:6
+msgid "Label"
+msgstr "Метка"
+
+#: task_manager/tasks/filters.py:13
 msgid "Self tasks only"
 msgstr "Только свои задачи"
 
@@ -71,7 +75,7 @@ msgstr "статус"
 
 #: task_manager/tasks/models.py:27
 msgid "labels"
-msgstr "метка"
+msgstr "метки"
 
 #: task_manager/tasks/views.py:32
 msgid "Task created successfully"
@@ -118,10 +122,6 @@ msgstr "Создать"
 #: task_manager/templates/users/delete.html:5
 msgid "Sure delete?"
 msgstr "Точно удалить?"
-
-#: task_manager/templates/labels/delete.html:6
-msgid "Label"
-msgstr "Метка"
 
 #: task_manager/templates/labels/delete.html:9
 #: task_manager/templates/statuses/delete.html:9
