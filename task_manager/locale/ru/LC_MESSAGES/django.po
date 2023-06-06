@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-02 10:07+0500\n"
+"POT-Creation-Date: 2023-06-06 11:39+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,10 @@ msgstr "Метка успешно изменена"
 #: task_manager/labels/views.py:40
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
+
+#: task_manager/mixins.py:11
+msgid "You're not logged in, please login"
+msgstr "Вы не вошли, пожалуйста войдите"
 
 #: task_manager/statuses/views.py:21
 msgid "Status created successfully"
@@ -302,7 +306,7 @@ msgstr "Полное имя"
 msgid "Update user"
 msgstr "Изменить пользователя"
 
-#: task_manager/users/views.py:24
+#: task_manager/users/views.py:23
 msgid "User signed up successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
@@ -310,21 +314,17 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User updated successfully"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:40
+#: task_manager/users/views.py:35
 msgid "You're cannot update this user"
 msgstr "Вы не можете обновить этого пользователя"
 
-#: task_manager/users/views.py:51
+#: task_manager/users/views.py:45
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/views.py:57
+#: task_manager/users/views.py:46
 msgid "You're cannot delete this user"
 msgstr "Вы не можете удалить этого пользователя"
-
-#: task_manager/utils.py:11
-msgid "You're not logged in, please login"
-msgstr "Вы не вошли, пожалуйста войдите"
 
 #: task_manager/views.py:16
 msgid "You are logged in"
