@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from task_manager.users.models import User
 from task_manager.users.forms import SignupForm, UpdateForm
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.utils import RedirectToLoginMixin
+from task_manager.mixins import RedirectToLoginMixin
 from django.contrib import messages
 from django.utils.translation import gettext as _
 

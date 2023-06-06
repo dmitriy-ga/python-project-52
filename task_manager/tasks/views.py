@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django_filters.views import FilterView
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.utils import RedirectToLoginMixin
+from task_manager.mixins import RedirectToLoginMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import TaskModel
