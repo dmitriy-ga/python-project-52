@@ -16,7 +16,7 @@ class ViewForLogin(SuccessMessageMixin, LoginView):
     success_message = _('You are logged in')
 
 
-class ViewForLogout(SuccessMessageMixin, LogoutView):
+class ViewForLogout(LogoutView):
 
     def get(self, request, *args, **kwargs):
         messages.success(self.request, _('You are logged out'))
