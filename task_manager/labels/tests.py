@@ -1,17 +1,17 @@
 from django.test import TestCase
 from .models import LabelModel
 from task_manager.users.models import User
-import os.path
+from django.urls import reverse_lazy
 
 
 class TestLabel(TestCase):
     fixtures = ['fixture_all.json', ]
     label_example_after = {'name': 'label_example_after', }
 
-    label_index_url = os.path.join('/', 'labels', '')
-    label_create_url = os.path.join(label_index_url, 'create', '')
-    label_update_1_url = os.path.join(label_index_url, '1', 'update', '')
-    label_delete_1_url = os.path.join(label_index_url, '1', 'delete', '')
+    label_index_url = reverse_lazy('labels_index')
+    label_create_url = reverse_lazy('labels_create')
+    label_update_1_url = reverse_lazy('labels_update', args=[1])
+    label_delete_1_url = reverse_lazy('labels_delete', args=[1])
 
     def setUp(self):
         self.client.force_login(User.objects.get(username='tester_user'))

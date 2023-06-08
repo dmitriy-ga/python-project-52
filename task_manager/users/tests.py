@@ -1,15 +1,15 @@
 from django.test import TestCase
 from .models import User
-import os.path
+from django.urls import reverse_lazy
 
 
 class TestUsers(TestCase):
     fixtures = ['fixture_all.json', ]
 
-    user_index_url = os.path.join('/', 'users', '')
-    user_create_url = os.path.join(user_index_url, 'create', '')
-    user_update_1_url = os.path.join(user_index_url, '1', 'update', '')
-    user_delete_1_url = os.path.join(user_index_url, '1', 'delete', '')
+    user_index_url = reverse_lazy('users_index')
+    user_create_url = reverse_lazy('users_create')
+    user_update_1_url = reverse_lazy('users_update', args=[1])
+    user_delete_1_url = reverse_lazy('users_delete', args=[1])
 
     user_after = {
         'username': 'tester_app',

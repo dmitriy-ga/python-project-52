@@ -1,17 +1,17 @@
 from django.test import TestCase
 from .models import StatusModel
 from task_manager.users.models import User
-import os.path
+from django.urls import reverse_lazy
 
 
 class TestStatuses(TestCase):
     fixtures = ['fixture_all.json', ]
     status_example_after = {'name': 'status_example_after', }
 
-    status_index_url = os.path.join('/', 'statuses', '')
-    status_create_url = os.path.join(status_index_url, 'create', '')
-    status_update_1_url = os.path.join(status_index_url, '1', 'update', '')
-    status_delete_1_url = os.path.join(status_index_url, '1', 'delete', '')
+    status_index_url = reverse_lazy('statuses_index')
+    status_create_url = reverse_lazy('statuses_create')
+    status_update_1_url = reverse_lazy('statuses_update', args=[1])
+    status_delete_1_url = reverse_lazy('statuses_delete', args=[1])
 
     def setUp(self):
         self.client.force_login(User.objects.get(username='tester_user'))

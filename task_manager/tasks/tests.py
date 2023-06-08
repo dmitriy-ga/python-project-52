@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from task_manager.tasks.models import TaskModel
 from task_manager.users.models import User
-import os.path
+from django.urls import reverse_lazy
 
 
 class TestTasks(TestCase):
@@ -14,10 +14,10 @@ class TestTasks(TestCase):
         'status': '1',
     }
 
-    task_index_url = os.path.join('/', 'tasks', '')
-    task_create_url = os.path.join(task_index_url, 'create', '')
-    task_update_1_url = os.path.join(task_index_url, '1', 'update', '')
-    task_delete_1_url = os.path.join(task_index_url, '1', 'delete', '')
+    task_index_url = reverse_lazy('tasks_index')
+    task_create_url = reverse_lazy('tasks_create')
+    task_update_1_url = reverse_lazy('tasks_update', args=[1])
+    task_delete_1_url = reverse_lazy('tasks_delete', args=[1])
 
     def setUp(self):
         self.client.force_login(User.objects.get(username='tester_task2'))
@@ -74,14 +74,15 @@ class TestTasks(TestCase):
         task_example = TaskModel.objects.get(id='1')
         filter_task_example = TaskModel.objects.get(id='2')
 
-        response = self.client.get('/tasks/?status=2&executor=2')
+        response = self.client.get(self.task_index_url, {'status': 2,
+                                                         'executor': 2})
         self.assertContains(response, task_example.name)
         self.assertNotContains(response, filter_task_example.name)
 
-        response = self.client.get('/tasks/?self_task=on')
+        response = self.client.get(self.task_index_url, {'self_task': 'on'})
         self.assertContains(response, task_example.name)
         self.assertNotContains(response, filter_task_example.name)
 
-        response = self.client.get('/tasks/?status=1')
+        response = self.client.get(self.task_index_url, {'status': 1})
         self.assertNotContains(response, task_example.name)
         self.assertNotContains(response, filter_task_example.name)
