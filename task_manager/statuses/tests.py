@@ -1,52 +1,66 @@
 from django.test import TestCase
 from .models import StatusModel
 from task_manager.users.models import User
+import os.path
 
 
 class TestStatuses(TestCase):
-    def setUp(self):
-        # Example statuses for CRUD
-        self.status_example_UD = {'name': 'status_example_UD', }
-        self.status_example_C = {'name': 'status_example_C', }
+    fixtures = ['fixture_all.json', ]
+    status_example_after = {'name': 'status_example_after', }
 
-        User.objects.create(username='status_tester',
-                            first_name='statuser_name',
-                            last_name='teststatus')
-        self.client.force_login(User.objects.get(username='status_tester'))
-        self.client.post('/statuses/create/', data=self.status_example_UD)
+    status_index_url = os.path.join('/', 'statuses', '')
+    status_create_url = os.path.join(status_index_url, 'create', '')
+    status_update_1_url = os.path.join(status_index_url, '1', 'update', '')
+    status_delete_1_url = os.path.join(status_index_url, '1', 'delete', '')
+
+    def setUp(self):
+        self.client.force_login(User.objects.get(username='tester_user'))
 
     def test_status_index(self):
-        response = self.client.get('/statuses/')
+        response = self.client.get(self.status_index_url)
         self.assertEqual(response.status_code, 200)
 
     def test_status_create(self):
-        response = self.client.get('/statuses/create/')
+        success_message = 'Статус успешно создан'
+
+        response = self.client.get(self.status_create_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post('/statuses/create/',
-                                    data=self.status_example_C)
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.status_create_url,
+                                    data=self.status_example_after,
+                                    follow=True)
+        self.assertContains(response, success_message)
 
-        created_status = StatusModel.objects.get(name='status_example_C')
-        self.assertEqual(created_status.name, self.status_example_C['name'])
+        created_status = StatusModel.objects.get(
+            name=self.status_example_after['name']
+        )
+        self.assertEqual(created_status.name, self.status_example_after['name'])
 
     def test_status_update(self):
-        response = self.client.get('/statuses/1/update/')
+        success_message = 'Статус успешно изменен'
+
+        response = self.client.get(self.status_update_1_url)
         self.assertEqual(response.status_code, 200)
 
-        status_new = {'name': 'statusname2', }
-        response = self.client.post('/statuses/1/update/', data=status_new)
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.status_update_1_url,
+                                    data=self.status_example_after,
+                                    follow=True)
+        self.assertContains(response, success_message)
 
-        updated_status = StatusModel.objects.get(name='statusname2')
-        self.assertEqual(updated_status.name, status_new['name'])
+        updated_status = StatusModel.objects.get(
+            name=self.status_example_after['name']
+        )
+        self.assertEqual(updated_status.name, self.status_example_after['name'])
 
     def test_status_delete(self):
-        response = self.client.get('/statuses/1/delete/')
+        status_in_fixture = StatusModel.objects.get(id=1)
+        success_message = 'Статус успешно удален'
+
+        response = self.client.get(self.status_delete_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post('/statuses/1/delete/')
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.status_delete_1_url, follow=True)
+        self.assertContains(response, success_message)
 
-        response = self.client.get('/statuses/')
-        self.assertNotContains(response, self.status_example_UD['name'])
+        response = self.client.get(self.status_index_url)
+        self.assertNotContains(response, status_in_fixture.name)

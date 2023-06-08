@@ -1,52 +1,66 @@
 from django.test import TestCase
 from .models import LabelModel
 from task_manager.users.models import User
+import os.path
 
 
 class TestLabel(TestCase):
-    def setUp(self):
-        # Example labels for CRUD
-        self.label_example_UD = {'name': 'label_example_UD', }
-        self.label_example_C = {'name': 'label_example_C', }
+    fixtures = ['fixture_all.json', ]
+    label_example_after = {'name': 'label_example_after', }
 
-        User.objects.create(username='label_tester',
-                            first_name='labeler_name',
-                            last_name='testlabel')
-        self.client.force_login(User.objects.get(username='label_tester'))
-        self.client.post('/labels/create/', data=self.label_example_UD)
+    label_index_url = os.path.join('/', 'labels', '')
+    label_create_url = os.path.join(label_index_url, 'create', '')
+    label_update_1_url = os.path.join(label_index_url, '1', 'update', '')
+    label_delete_1_url = os.path.join(label_index_url, '1', 'delete', '')
+
+    def setUp(self):
+        self.client.force_login(User.objects.get(username='tester_user'))
 
     def test_label_index(self):
-        response = self.client.get('/labels/')
+        response = self.client.get(self.label_index_url)
         self.assertEqual(response.status_code, 200)
 
     def test_label_create(self):
-        response = self.client.get('/labels/create/')
+        success_message = 'Метка успешно создана'
+
+        response = self.client.get(self.label_create_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post('/labels/create/',
-                                    data=self.label_example_C)
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.label_create_url,
+                                    data=self.label_example_after,
+                                    follow=True)
+        self.assertContains(response, success_message)
 
-        created_label = LabelModel.objects.get(name='label_example_C')
-        self.assertEqual(created_label.name, self.label_example_C['name'])
+        created_label = LabelModel.objects.get(
+            name=self.label_example_after['name']
+        )
+        self.assertEqual(created_label.name, self.label_example_after['name'])
 
     def test_label_update(self):
-        response = self.client.get('/labels/1/update/')
+        success_message = 'Метка успешно изменена'
+
+        response = self.client.get(self.label_update_1_url)
         self.assertEqual(response.status_code, 200)
 
-        label_new = {'name': 'labelname2', }
-        response = self.client.post('/labels/1/update/', data=label_new)
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.label_update_1_url,
+                                    data=self.label_example_after,
+                                    follow=True)
+        self.assertContains(response, success_message)
 
-        updated_label = LabelModel.objects.get(name='labelname2')
-        self.assertEqual(updated_label.name, label_new['name'])
+        updated_label = LabelModel.objects.get(
+            name=self.label_example_after['name']
+        )
+        self.assertEqual(updated_label.name, self.label_example_after['name'])
 
     def test_label_delete(self):
-        response = self.client.get('/labels/1/delete/')
+        label_in_fixture = LabelModel.objects.get(id=1)
+        success_message = 'Метка успешно удалена'
+
+        response = self.client.get(self.label_delete_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post('/labels/1/delete/')
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.label_delete_1_url, follow=True)
+        self.assertContains(response, success_message)
 
-        response = self.client.get('/labels/')
-        self.assertNotContains(response, self.label_example_UD['name'])
+        response = self.client.get(self.label_index_url)
+        self.assertNotContains(response, label_in_fixture.name)

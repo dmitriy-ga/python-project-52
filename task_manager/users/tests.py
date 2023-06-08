@@ -1,61 +1,66 @@
 from django.test import TestCase
 from .models import User
+import os.path
 
 
 class TestUsers(TestCase):
+    fixtures = ['fixture_all.json', ]
+
+    user_index_url = os.path.join('/', 'users', '')
+    user_create_url = os.path.join(user_index_url, 'create', '')
+    user_update_1_url = os.path.join(user_index_url, '1', 'update', '')
+    user_delete_1_url = os.path.join(user_index_url, '1', 'delete', '')
+
+    user_after = {
+        'username': 'tester_app',
+        'first_name': 'Somename',
+        'last_name': 'Somesurname',
+        'password1': 'somelongpassword',
+        'password2': 'somelongpassword',
+    }
+
     def setUp(self):
-        self.params = {
-            'username': 'tester_app',
-            'first_name': 'Somename',
-            'last_name': 'Somesurname',
-            'password1': 'somelongpassword',
-            'password2': 'somelongpassword',
-        }
-        self.params_for_updated = {
-            'username': 'created_user',
-            'first_name': 'Somename2',
-            'last_name': 'Somesurname2',
-            'password1': 'somelongpassword2',
-            'password2': 'somelongpassword2',
-        }
-        User.objects.create(username='created_user',
-                            first_name='created_name',
-                            last_name='anothersurname')
+        self.user_in_fixture = User.objects.get(id=1)
 
     def test_users_index(self):
-        response = self.client.get('/users/')
+        response = self.client.get(self.user_index_url)
         self.assertEqual(response.status_code, 200)
 
     def test_users_create(self):
-        response = self.client.get('/users/create/')
+        success_message = 'Пользователь успешно зарегистрирован'
+        response = self.client.get(self.user_create_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post('/users/create/', data=self.params)
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.user_create_url,
+                                    data=self.user_after, follow=True)
+        self.assertContains(response, success_message)
 
-        created_user = User.objects.get(first_name='Somename')
-        self.assertEqual(created_user.first_name, self.params['first_name'])
+        created_user = User.objects.get(username=self.user_after['username'])
+        self.assertEqual(created_user.username, self.user_after['username'])
 
     def test_users_update(self):
-        self.client.force_login(User.objects.get(username='created_user'))
-        response = self.client.get('/users/1/update/')
+        success_message = 'Пользователь успешно изменен'
+        self.client.force_login(self.user_in_fixture)
+
+        response = self.client.get(self.user_update_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post('/users/1/update/',
-                                    data=self.params_for_updated)
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.user_update_1_url,
+                                    data=self.user_after, follow=True)
+        self.assertContains(response, success_message)
 
-        updated_user = User.objects.get(first_name='Somename2')
-        self.assertEqual(updated_user.first_name,
-                         self.params_for_updated['first_name'])
+        updated_user = User.objects.get(username=self.user_after['username'])
+        self.assertEqual(updated_user.username, self.user_after['username'])
 
     def test_users_delete(self):
-        self.client.force_login(User.objects.get(username='created_user'))
-        response = self.client.get('/users/1/delete/')
+        success_message = 'Пользователь успешно удален'
+        self.client.force_login(self.user_in_fixture)
+
+        response = self.client.get(self.user_delete_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post('/users/1/delete/')
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post(self.user_delete_1_url, follow=True)
+        self.assertContains(response, success_message)
 
-        response = self.client.get('/users/')
-        self.assertNotContains(response, self.params_for_updated['first_name'])
+        response = self.client.get(self.user_index_url)
+        self.assertNotContains(response, self.user_in_fixture.username)

@@ -1,0 +1,94 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "username": "tester_user",
+    "first_name": "Main",
+    "last_name": "User"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "username": "tester_task2",
+    "first_name": "Second",
+    "last_name": "User"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "username": "tester_task3",
+    "first_name": "Third",
+    "last_name": "User"
+  }
+},
+{
+  "model": "statuses.statusmodel",
+  "pk": 1,
+  "fields": {
+    "name": "Status_example1"
+  }
+},
+{
+  "model": "statuses.statusmodel",
+  "pk": 2,
+  "fields": {
+    "name": "Status_example2"
+  }
+},
+{
+  "model": "statuses.statusmodel",
+  "pk": 3,
+  "fields": {
+    "name": "Status_example3"
+  }
+},
+{
+  "model": "tasks.taskmodel",
+  "pk": 1,
+  "fields": {
+    "name": "Task_example",
+    "description": "test description",
+    "author": 2,
+    "executor": 2,
+    "status": 2
+  }
+},
+{
+  "model": "tasks.taskmodel",
+  "pk": 2,
+  "fields": {
+    "name": "Filtertest2",
+    "description": "sometext",
+    "author": 3,
+    "executor": 3,
+    "status": 3
+  }
+},  
+{
+  "model": "tasks.labelsthrough",
+  "pk": 1,
+  "fields": {
+    "label": 2,
+    "task": 1
+  }
+},
+{
+  "model": "labels.labelmodel",
+  "pk": 1,
+  "fields": {
+    "name": "Label_example1"
+  }
+},
+{
+  "model": "labels.labelmodel",
+  "pk": 2,
+  "fields": {
+    "name": "Label_example2"
+  }
+}  
+]
