@@ -115,9 +115,7 @@ DATABASES = {
 
 if USE_POSTGRESQL:
     DATABASES = {
-        "default": dj_database_url.config(conn_max_age=600,
-                                          conn_health_checks=True,
-                                          ),
+        "default": dj_database_url.config(conn_max_age=600),
     }
 
 # Password validation

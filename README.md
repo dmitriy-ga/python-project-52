@@ -6,6 +6,8 @@
 ### Description
 Task Manager - redmine-like project management web application. Users can operate with statuses, labels and tasks.
 
+### Deployed demo: [web-production-b7c3.up.railway.app]()
+
 ### Minimum requirements
 - Python (3.10 or newer)
 - Django (4.1 or newer)
