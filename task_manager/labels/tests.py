@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import LabelModel
 from task_manager.users.models import User
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 
 
 class TestLabel(TestCase):
@@ -21,7 +22,7 @@ class TestLabel(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_label_create(self):
-        success_message = 'Метка успешно создана'
+        success_message = _('Label created successfully')
 
         response = self.client.get(self.label_create_url)
         self.assertEqual(response.status_code, 200)
@@ -37,7 +38,7 @@ class TestLabel(TestCase):
         self.assertEqual(created_label.name, self.label_example_after['name'])
 
     def test_label_update(self):
-        success_message = 'Метка успешно изменена'
+        success_message = _('Label updated successfully')
 
         response = self.client.get(self.label_update_1_url)
         self.assertEqual(response.status_code, 200)
@@ -54,7 +55,7 @@ class TestLabel(TestCase):
 
     def test_label_delete(self):
         label_in_fixture = LabelModel.objects.get(id=1)
-        success_message = 'Метка успешно удалена'
+        success_message = _('Label deleted successfully')
 
         response = self.client.get(self.label_delete_1_url)
         self.assertEqual(response.status_code, 200)

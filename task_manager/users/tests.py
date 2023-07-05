@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import User
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 
 
 class TestUsers(TestCase):
@@ -27,7 +28,7 @@ class TestUsers(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_users_create(self):
-        success_message = 'Пользователь успешно зарегистрирован'
+        success_message = _('User signed up successfully')
         response = self.client.get(self.user_create_url)
         self.assertEqual(response.status_code, 200)
 
@@ -39,7 +40,7 @@ class TestUsers(TestCase):
         self.assertEqual(created_user.username, self.user_after['username'])
 
     def test_users_update(self):
-        success_message = 'Пользователь успешно изменен'
+        success_message = _('User updated successfully')
         self.client.force_login(self.user_in_fixture)
 
         response = self.client.get(self.user_update_1_url)
@@ -53,7 +54,7 @@ class TestUsers(TestCase):
         self.assertEqual(updated_user.username, self.user_after['username'])
 
     def test_users_delete(self):
-        success_message = 'Пользователь успешно удален'
+        success_message = _('User deleted successfully')
         self.client.force_login(self.user_in_fixture)
 
         response = self.client.get(self.user_delete_1_url)

@@ -3,6 +3,7 @@ from django.test import TestCase
 from task_manager.tasks.models import TaskModel
 from task_manager.users.models import User
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 
 
 class TestTasks(TestCase):
@@ -27,7 +28,7 @@ class TestTasks(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_tasks_create(self):
-        success_message = 'Задача успешно создана'
+        success_message = _('Task created successfully')
 
         response = self.client.get(self.task_create_url)
         self.assertEqual(response.status_code, 200)
@@ -43,7 +44,7 @@ class TestTasks(TestCase):
         self.assertEqual(created_task.name, self.task_example_after['name'])
 
     def test_tasks_update(self):
-        success_message = 'Задача успешно изменена'
+        success_message = _('Task updated successfully')
         response = self.client.get(self.task_update_1_url)
         self.assertEqual(response.status_code, 200)
 
@@ -59,7 +60,7 @@ class TestTasks(TestCase):
 
     def test_tasks_delete(self):
         task_in_fixture = TaskModel.objects.get(id=1)
-        success_message = 'Задача успешно удалена'
+        success_message = _('Task deleted successfully')
 
         response = self.client.get(self.task_delete_1_url)
         self.assertEqual(response.status_code, 200)

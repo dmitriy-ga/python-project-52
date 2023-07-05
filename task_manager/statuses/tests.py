@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import StatusModel
 from task_manager.users.models import User
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 
 
 class TestStatuses(TestCase):
@@ -21,7 +22,7 @@ class TestStatuses(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_status_create(self):
-        success_message = 'Статус успешно создан'
+        success_message = _('Status created successfully')
 
         response = self.client.get(self.status_create_url)
         self.assertEqual(response.status_code, 200)
@@ -37,7 +38,7 @@ class TestStatuses(TestCase):
         self.assertEqual(created_status.name, self.status_example_after['name'])
 
     def test_status_update(self):
-        success_message = 'Статус успешно изменен'
+        success_message = _('Status updated successfully')
 
         response = self.client.get(self.status_update_1_url)
         self.assertEqual(response.status_code, 200)
@@ -54,7 +55,7 @@ class TestStatuses(TestCase):
 
     def test_status_delete(self):
         status_in_fixture = StatusModel.objects.get(id=1)
-        success_message = 'Статус успешно удален'
+        success_message = _('Status deleted successfully')
 
         response = self.client.get(self.status_delete_1_url)
         self.assertEqual(response.status_code, 200)
