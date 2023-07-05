@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import LabelModel
-from task_manager.mixins import RedirectToLoginMixin
+from task_manager.mixins import RedirectToLoginMixin, DeletionCheckMixin
 from django.utils.translation import gettext as _
 
 
@@ -31,10 +31,13 @@ class LabelsUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     success_message = _('Label updated successfully')
 
 
-class LabelsDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
+class LabelsDelete(SuccessMessageMixin, RedirectToLoginMixin,
+                   DeletionCheckMixin, DeleteView):
     template_name = 'labels/delete.html'
     model = LabelModel
     success_url = reverse_lazy('labels_index')
     context_object_name = 'label'
     pk_url_kwarg = 'label_id'
     success_message = _('Label deleted successfully')
+    protected_redirect_to = reverse_lazy('labels_index')
+    protected_message = _("Can't delete label in use")

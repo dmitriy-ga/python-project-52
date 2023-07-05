@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.db.models import ProtectedError
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext as _
 
@@ -14,3 +15,16 @@ class RedirectToLoginMixin(LoginRequiredMixin):
             )
             return redirect(reverse_lazy('login'))
         return super().dispatch(request, *args, **kwargs)
+
+
+class DeletionCheckMixin:
+
+    protected_redirect_to = ''
+    protected_message = 'Protected object'
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(self.request, self.protected_message)
+            return redirect(self.protected_redirect_to)

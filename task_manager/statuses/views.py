@@ -3,7 +3,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView
 from django.urls import reverse_lazy
 from .models import StatusModel
-from task_manager.mixins import RedirectToLoginMixin
+from task_manager.mixins import RedirectToLoginMixin, DeletionCheckMixin
 from django.utils.translation import gettext as _
 
 
@@ -31,10 +31,13 @@ class StatusesUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     success_message = _('Status updated successfully')
 
 
-class StatusesDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
+class StatusesDelete(SuccessMessageMixin, RedirectToLoginMixin,
+                     DeletionCheckMixin, DeleteView):
     template_name = 'statuses/delete.html'
     model = StatusModel
     success_url = reverse_lazy('statuses_index')
     context_object_name = 'status'
     pk_url_kwarg = 'status_id'
     success_message = _('Status deleted successfully')
+    protected_redirect_to = reverse_lazy('statuses_index')
+    protected_message = _("Can't delete status in use")
