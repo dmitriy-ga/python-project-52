@@ -1,3 +1,4 @@
+import json
 from django.test import TestCase
 
 from task_manager.tasks.models import TaskModel
@@ -8,12 +9,9 @@ from django.utils.translation import gettext as _
 
 class TestTasks(TestCase):
     fixtures = ['fixture_all.json', ]
-    task_example_after = {
-        'name': 'TestTask',
-        'description': 'This is testing task',
-        'executor': '1',
-        'status': '1',
-    }
+
+    with open('task_manager/fixtures/task_example_after.json') as f:
+        task_example_after = json.load(f)
 
     task_index_url = reverse_lazy('tasks_index')
     task_create_url = reverse_lazy('tasks_create')

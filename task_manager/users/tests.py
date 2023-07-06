@@ -1,3 +1,4 @@
+import json
 from django.test import TestCase
 from .models import User
 from django.urls import reverse_lazy
@@ -12,13 +13,8 @@ class TestUsers(TestCase):
     user_update_1_url = reverse_lazy('users_update', args=[1])
     user_delete_1_url = reverse_lazy('users_delete', args=[1])
 
-    user_after = {
-        'username': 'tester_app',
-        'first_name': 'Somename',
-        'last_name': 'Somesurname',
-        'password1': 'somelongpassword',
-        'password2': 'somelongpassword',
-    }
+    with open('task_manager/fixtures/user_after.json') as f:
+        user_after = json.load(f)
 
     def setUp(self):
         self.user_in_fixture = User.objects.get(id=1)
