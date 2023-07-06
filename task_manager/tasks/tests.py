@@ -13,25 +13,22 @@ class TestTasks(TestCase):
     with open('task_manager/fixtures/task_example_after.json') as f:
         task_example_after = json.load(f)
 
-    task_index_url = reverse_lazy('tasks_index')
-    task_create_url = reverse_lazy('tasks_create')
-    task_update_1_url = reverse_lazy('tasks_update', args=[1])
-    task_delete_1_url = reverse_lazy('tasks_delete', args=[1])
-
     def setUp(self):
         self.client.force_login(User.objects.get(username='tester_task2'))
 
     def test_tasks_index(self):
-        response = self.client.get(self.task_index_url)
+        task_index_url = reverse_lazy('tasks_index')
+        response = self.client.get(task_index_url)
         self.assertEqual(response.status_code, 200)
 
     def test_tasks_create(self):
         success_message = _('Task created successfully')
+        task_create_url = reverse_lazy('tasks_create')
 
-        response = self.client.get(self.task_create_url)
+        response = self.client.get(task_create_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(self.task_create_url,
+        response = self.client.post(task_create_url,
                                     data=self.task_example_after,
                                     follow=True)
         self.assertContains(response, success_message)
@@ -43,10 +40,11 @@ class TestTasks(TestCase):
 
     def test_tasks_update(self):
         success_message = _('Task updated successfully')
-        response = self.client.get(self.task_update_1_url)
+        task_update_1_url = reverse_lazy('tasks_update', args=[1])
+        response = self.client.get(task_update_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(self.task_update_1_url,
+        response = self.client.post(task_update_1_url,
                                     data=self.task_example_after,
                                     follow=True)
         self.assertContains(response, success_message)
@@ -59,29 +57,32 @@ class TestTasks(TestCase):
     def test_tasks_delete(self):
         task_in_fixture = TaskModel.objects.get(id=1)
         success_message = _('Task deleted successfully')
+        task_index_url = reverse_lazy('tasks_index')
+        task_delete_1_url = reverse_lazy('tasks_delete', args=[1])
 
-        response = self.client.get(self.task_delete_1_url)
+        response = self.client.get(task_delete_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(self.task_delete_1_url, follow=True)
+        response = self.client.post(task_delete_1_url, follow=True)
         self.assertContains(response, success_message)
 
-        response = self.client.get(self.task_index_url)
+        response = self.client.get(task_index_url)
         self.assertNotContains(response, task_in_fixture.name)
 
     def test_tasks_filter(self):
+        task_index_url = reverse_lazy('tasks_index')
         task_example = TaskModel.objects.get(id='1')
         filter_task_example = TaskModel.objects.get(id='2')
 
-        response = self.client.get(self.task_index_url, {'status': 2,
-                                                         'executor': 2})
+        response = self.client.get(task_index_url, {'status': 2,
+                                                    'executor': 2})
         self.assertContains(response, task_example.name)
         self.assertNotContains(response, filter_task_example.name)
 
-        response = self.client.get(self.task_index_url, {'self_task': 'on'})
+        response = self.client.get(task_index_url, {'self_task': 'on'})
         self.assertContains(response, task_example.name)
         self.assertNotContains(response, filter_task_example.name)
 
-        response = self.client.get(self.task_index_url, {'status': 1})
+        response = self.client.get(task_index_url, {'status': 1})
         self.assertNotContains(response, task_example.name)
         self.assertNotContains(response, filter_task_example.name)

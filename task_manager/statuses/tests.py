@@ -9,25 +9,22 @@ class TestStatuses(TestCase):
     fixtures = ['fixture_all.json', ]
     status_example_after = {'name': 'status_example_after', }
 
-    status_index_url = reverse_lazy('statuses_index')
-    status_create_url = reverse_lazy('statuses_create')
-    status_update_1_url = reverse_lazy('statuses_update', args=[1])
-    status_delete_1_url = reverse_lazy('statuses_delete', args=[1])
-
     def setUp(self):
         self.client.force_login(User.objects.get(username='tester_user'))
 
     def test_status_index(self):
-        response = self.client.get(self.status_index_url)
+        status_index_url = reverse_lazy('statuses_index')
+        response = self.client.get(status_index_url)
         self.assertEqual(response.status_code, 200)
 
     def test_status_create(self):
         success_message = _('Status created successfully')
+        status_create_url = reverse_lazy('statuses_create')
 
-        response = self.client.get(self.status_create_url)
+        response = self.client.get(status_create_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(self.status_create_url,
+        response = self.client.post(status_create_url,
                                     data=self.status_example_after,
                                     follow=True)
         self.assertContains(response, success_message)
@@ -39,11 +36,12 @@ class TestStatuses(TestCase):
 
     def test_status_update(self):
         success_message = _('Status updated successfully')
+        status_update_1_url = reverse_lazy('statuses_update', args=[1])
 
-        response = self.client.get(self.status_update_1_url)
+        response = self.client.get(status_update_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(self.status_update_1_url,
+        response = self.client.post(status_update_1_url,
                                     data=self.status_example_after,
                                     follow=True)
         self.assertContains(response, success_message)
@@ -54,14 +52,16 @@ class TestStatuses(TestCase):
         self.assertEqual(updated_status.name, self.status_example_after['name'])
 
     def test_status_delete(self):
+        status_index_url = reverse_lazy('statuses_index')
+        status_delete_1_url = reverse_lazy('statuses_delete', args=[1])
         status_in_fixture = StatusModel.objects.get(id=1)
         success_message = _('Status deleted successfully')
 
-        response = self.client.get(self.status_delete_1_url)
+        response = self.client.get(status_delete_1_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(self.status_delete_1_url, follow=True)
+        response = self.client.post(status_delete_1_url, follow=True)
         self.assertContains(response, success_message)
 
-        response = self.client.get(self.status_index_url)
+        response = self.client.get(status_index_url)
         self.assertNotContains(response, status_in_fixture.name)
