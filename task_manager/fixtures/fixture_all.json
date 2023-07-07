@@ -27,6 +27,15 @@
   }
 },
 {
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "username": "non_self_user4",
+    "first_name": "Fourth",
+    "last_name": "User"
+  }
+},  
+{
   "model": "statuses.statusmodel",
   "pk": 1,
   "fields": {

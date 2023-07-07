@@ -55,11 +55,17 @@ class TestTasks(TestCase):
         self.assertEqual(updated_task.name, self.task_example_after['name'])
 
     def test_tasks_delete(self):
-        task_in_fixture = TaskModel.objects.get(id=1)
+        self_task_in_fixture = TaskModel.objects.get(id=1)
+        non_self_task_in_fixture = TaskModel.objects.get(id=2)
+
         success_message = _('Task deleted successfully')
+        protected_message = _('Only author can delete this task')
+
         task_index_url = reverse_lazy('tasks_index')
         task_delete_1_url = reverse_lazy('tasks_delete', args=[1])
+        task_delete_2_url = reverse_lazy('tasks_delete', args=[2])
 
+        # Checking deleting self task
         response = self.client.get(task_delete_1_url)
         self.assertEqual(response.status_code, 200)
 
@@ -67,7 +73,17 @@ class TestTasks(TestCase):
         self.assertContains(response, success_message)
 
         response = self.client.get(task_index_url)
-        self.assertNotContains(response, task_in_fixture.name)
+        self.assertNotContains(response, self_task_in_fixture.name)
+
+        # Checking deleting non-self task
+        response = self.client.get(task_delete_2_url)
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.post(task_delete_2_url, follow=True)
+        self.assertContains(response, protected_message)
+
+        response = self.client.get(task_index_url)
+        self.assertContains(response, non_self_task_in_fixture.name)
 
     def test_tasks_filter(self):
         task_index_url = reverse_lazy('tasks_index')

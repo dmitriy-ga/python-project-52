@@ -11,9 +11,6 @@ class TestUsers(TestCase):
     with open('task_manager/fixtures/user_after.json') as f:
         user_after = json.load(f)
 
-    def setUp(self):
-        self.user_in_fixture = User.objects.get(id=1)
-
     def test_users_index(self):
         user_index_url = reverse_lazy('users_index')
         response = self.client.get(user_index_url)
@@ -34,9 +31,27 @@ class TestUsers(TestCase):
 
     def test_users_update(self):
         success_message = _('User updated successfully')
-        user_update_1_url = reverse_lazy('users_update', args=[1])
-        self.client.force_login(self.user_in_fixture)
+        denied_message = _("You're cannot update this user")
 
+        user_in_fixture = User.objects.get(id=1)
+        another_user = User.objects.get(id=4)
+
+        user_index_url = reverse_lazy('users_index')
+        user_update_1_url = reverse_lazy('users_update', args=[1])
+        user_update_4_url = reverse_lazy('users_update', args=[4])
+        self.client.force_login(user_in_fixture)
+
+        # Checking non-self update
+        response = self.client.get(user_update_4_url)
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.post(user_update_4_url, follow=True)
+        self.assertContains(response, denied_message)
+
+        response = self.client.get(user_index_url)
+        self.assertContains(response, another_user.username)
+
+        # Checking self update
         response = self.client.get(user_update_1_url)
         self.assertEqual(response.status_code, 200)
 
@@ -49,10 +64,27 @@ class TestUsers(TestCase):
 
     def test_users_delete(self):
         success_message = _('User deleted successfully')
+        denied_message = _("You're cannot delete this user")
+
+        user_in_fixture = User.objects.get(id=1)
+        another_user = User.objects.get(id=4)
+
         user_index_url = reverse_lazy('users_index')
         user_delete_1_url = reverse_lazy('users_delete', args=[1])
-        self.client.force_login(self.user_in_fixture)
+        user_delete_4_url = reverse_lazy('users_delete', args=[4])
+        self.client.force_login(user_in_fixture)
 
+        # Checking non-self delete
+        response = self.client.get(user_delete_4_url)
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.post(user_delete_4_url, follow=True)
+        self.assertContains(response, denied_message)
+
+        response = self.client.get(user_index_url)
+        self.assertContains(response, another_user.username)
+
+        # Checking self delete
         response = self.client.get(user_delete_1_url)
         self.assertEqual(response.status_code, 200)
 
@@ -60,4 +92,4 @@ class TestUsers(TestCase):
         self.assertContains(response, success_message)
 
         response = self.client.get(user_index_url)
-        self.assertNotContains(response, self.user_in_fixture.username)
+        self.assertNotContains(response, user_in_fixture.username)
