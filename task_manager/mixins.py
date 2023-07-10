@@ -17,7 +17,7 @@ class RedirectToLoginMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class DeletionCheckMixin:
+class ProtectedObjectCheckMixin:
 
     protected_redirect_to = ''
     protected_message = 'Protected object'

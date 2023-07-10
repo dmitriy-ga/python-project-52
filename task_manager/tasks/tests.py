@@ -40,11 +40,11 @@ class TestTasks(TestCase):
 
     def test_tasks_update(self):
         success_message = _('Task updated successfully')
-        task_update_1_url = reverse_lazy('tasks_update', args=[1])
-        response = self.client.get(task_update_1_url)
+        task_update_url = reverse_lazy('tasks_update', args=[1])
+        response = self.client.get(task_update_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(task_update_1_url,
+        response = self.client.post(task_update_url,
                                     data=self.task_example_after,
                                     follow=True)
         self.assertContains(response, success_message)
@@ -62,24 +62,24 @@ class TestTasks(TestCase):
         protected_message = _('Only author can delete this task')
 
         task_index_url = reverse_lazy('tasks_index')
-        task_delete_1_url = reverse_lazy('tasks_delete', args=[1])
-        task_delete_2_url = reverse_lazy('tasks_delete', args=[2])
+        non_self_task_delete_url = reverse_lazy('tasks_delete', args=[1])
+        self_task_delete_url = reverse_lazy('tasks_delete', args=[2])
 
         # Checking deleting self task
-        response = self.client.get(task_delete_1_url)
+        response = self.client.get(non_self_task_delete_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(task_delete_1_url, follow=True)
+        response = self.client.post(non_self_task_delete_url, follow=True)
         self.assertContains(response, success_message)
 
         response = self.client.get(task_index_url)
         self.assertNotContains(response, self_task_in_fixture.name)
 
         # Checking deleting non-self task
-        response = self.client.get(task_delete_2_url)
+        response = self.client.get(self_task_delete_url)
         self.assertEqual(response.status_code, 302)
 
-        response = self.client.post(task_delete_2_url, follow=True)
+        response = self.client.post(self_task_delete_url, follow=True)
         self.assertContains(response, protected_message)
 
         response = self.client.get(task_index_url)

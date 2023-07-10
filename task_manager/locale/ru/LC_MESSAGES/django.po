@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 12:52+0500\n"
+"POT-Creation-Date: 2023-07-10 16:30+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -314,23 +314,23 @@ msgstr "Полное имя"
 msgid "Update user"
 msgstr "Изменить пользователя"
 
-#: task_manager/users/tests.py:20 task_manager/users/views.py:23
+#: task_manager/users/tests.py:21 task_manager/users/views.py:23
 msgid "User signed up successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/users/tests.py:33 task_manager/users/views.py:34
+#: task_manager/users/tests.py:34 task_manager/users/views.py:34
 msgid "User updated successfully"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/tests.py:34 task_manager/users/views.py:35
+#: task_manager/users/tests.py:35 task_manager/users/views.py:35
 msgid "You're cannot update this user"
 msgstr "Вы не можете обновить этого пользователя"
 
-#: task_manager/users/tests.py:66 task_manager/users/views.py:45
+#: task_manager/users/tests.py:67 task_manager/users/views.py:45
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/tests.py:67 task_manager/users/views.py:46
+#: task_manager/users/tests.py:68 task_manager/users/views.py:46
 msgid "You're cannot delete this user"
 msgstr "Вы не можете удалить этого пользователя"
 

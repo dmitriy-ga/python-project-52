@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from task_manager.users.models import User
 from task_manager.users.forms import SignupForm, UpdateForm
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import RedirectToLoginMixin, DeletionCheckMixin
+from task_manager.mixins import RedirectToLoginMixin, ProtectedObjectCheckMixin
 from .mixins import SelfUserCheckMixin
 from django.utils.translation import gettext as _
 
@@ -32,17 +32,17 @@ class UsersUpdate(SuccessMessageMixin, RedirectToLoginMixin,
     pk_url_kwarg = 'user_id'
     form_class = UpdateForm
     success_message = _('User updated successfully')
-    denied_message = _("You're cannot update this user")
+    self_delete_error_message = _("You're cannot update this user")
 
 
 class UsersDelete(SuccessMessageMixin, RedirectToLoginMixin,
-                  SelfUserCheckMixin, DeletionCheckMixin, DeleteView):
+                  SelfUserCheckMixin, ProtectedObjectCheckMixin, DeleteView):
     template_name = 'users/delete.html'
     model = User
     success_url = reverse_lazy('users_index')
     context_object_name = 'user'
     pk_url_kwarg = 'user_id'
     success_message = _('User deleted successfully')
-    denied_message = _("You're cannot delete this user")
+    self_delete_error_message = _("You're cannot delete this user")
     protected_redirect_to = reverse_lazy('users_index')
     protected_message = _("Can't delete assigned user")

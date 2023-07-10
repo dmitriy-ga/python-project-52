@@ -5,12 +5,11 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 class SelfUserCheckMixin(UserPassesTestMixin):
-    denied_message = 'Action denied'
+    self_delete_error_message = 'Action denied'
 
     def test_func(self):
-        return all((self.request.user.is_authenticated,
-                    self.request.user.id == self.get_object().id))
+        return self.request.user.id == self.get_object().id
 
     def handle_no_permission(self):
-        messages.error(self.request, self.denied_message)
+        messages.error(self.request, self.self_delete_error_message)
         return redirect(reverse_lazy('users_index'))

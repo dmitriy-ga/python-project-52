@@ -36,12 +36,12 @@ class TestLabel(TestCase):
 
     def test_label_update(self):
         success_message = _('Label updated successfully')
-        label_update_1_url = reverse_lazy('labels_update', args=[1])
+        label_update_url = reverse_lazy('labels_update', args=[1])
 
-        response = self.client.get(label_update_1_url)
+        response = self.client.get(label_update_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(label_update_1_url,
+        response = self.client.post(label_update_url,
                                     data=self.label_example_after,
                                     follow=True)
         self.assertContains(response, success_message)
@@ -53,14 +53,14 @@ class TestLabel(TestCase):
 
     def test_label_delete(self):
         label_index_url = reverse_lazy('labels_index')
-        label_delete_1_url = reverse_lazy('labels_delete', args=[1])
+        label_delete_url = reverse_lazy('labels_delete', args=[1])
         label_in_fixture = LabelModel.objects.get(id=1)
         success_message = _('Label deleted successfully')
 
-        response = self.client.get(label_delete_1_url)
+        response = self.client.get(label_delete_url)
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(label_delete_1_url, follow=True)
+        response = self.client.post(label_delete_url, follow=True)
         self.assertContains(response, success_message)
 
         response = self.client.get(label_index_url)
