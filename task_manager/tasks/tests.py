@@ -1,6 +1,5 @@
 import json
 from django.test import TestCase
-
 from task_manager.tasks.models import TaskModel
 from task_manager.users.models import User
 from django.urls import reverse_lazy
@@ -10,10 +9,10 @@ from django.utils.translation import gettext as _
 class TestTasks(TestCase):
     fixtures = ['fixture_all.json', ]
 
-    with open('task_manager/fixtures/task_example_after.json') as f:
-        task_example_after = json.load(f)
-
     def setUp(self):
+        with open('task_manager/fixtures/task_example_after.json') as f:
+            self.task_example_after = json.load(f)
+
         self.client.force_login(User.objects.get(username='tester_task2'))
 
     def test_tasks_index(self):

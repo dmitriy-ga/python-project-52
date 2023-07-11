@@ -1,3 +1,4 @@
+import json
 from django.test import TestCase
 from .models import StatusModel
 from task_manager.users.models import User
@@ -7,9 +8,11 @@ from django.utils.translation import gettext as _
 
 class TestStatuses(TestCase):
     fixtures = ['fixture_all.json', ]
-    status_example_after = {'name': 'status_example_after', }
 
     def setUp(self):
+        with open('task_manager/fixtures/status_example_after.json') as f:
+            self.status_example_after = json.load(f)
+
         self.client.force_login(User.objects.get(username='tester_user'))
 
     def test_status_index(self):
@@ -52,11 +55,17 @@ class TestStatuses(TestCase):
         self.assertEqual(updated_status.name, self.status_example_after['name'])
 
     def test_status_delete(self):
+        success_message = _('Status deleted successfully')
+        protected_message = _("Can't delete status in use")
+
         status_index_url = reverse_lazy('statuses_index')
         status_delete_url = reverse_lazy('statuses_delete', args=[1])
-        status_in_fixture = StatusModel.objects.get(id=1)
-        success_message = _('Status deleted successfully')
+        taken_status_delete_url = reverse_lazy('statuses_delete', args=[2])
 
+        status_to_delete = StatusModel.objects.get(id=1)
+        taken_status = StatusModel.objects.get(id=2)
+
+        # Checking deletable status
         response = self.client.get(status_delete_url)
         self.assertEqual(response.status_code, 200)
 
@@ -64,4 +73,14 @@ class TestStatuses(TestCase):
         self.assertContains(response, success_message)
 
         response = self.client.get(status_index_url)
-        self.assertNotContains(response, status_in_fixture.name)
+        self.assertNotContains(response, status_to_delete.name)
+
+        # Checking taken status
+        response = self.client.get(taken_status_delete_url)
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.post(taken_status_delete_url, follow=True)
+        self.assertContains(response, protected_message)
+
+        response = self.client.get(status_index_url)
+        self.assertContains(response, taken_status.name)
