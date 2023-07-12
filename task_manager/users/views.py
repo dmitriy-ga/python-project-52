@@ -10,39 +10,50 @@ from django.utils.translation import gettext as _
 
 
 class UsersIndex(ListView):
-    template_name = 'users/index.html'
+    template_name = 'manage/index/users_index.html'
     model = User
     context_object_name = 'users'
 
 
 class UsersCreate(SuccessMessageMixin, CreateView):
-    template_name = 'users/create.html'
+    template_name = 'manage/create.html'
     model = User
     success_url = reverse_lazy('login')
     form_class = SignupForm
     success_message = _('User signed up successfully')
+    extra_context = {
+        'page_title': _('Create user'),
+        'url_path': 'users_create',
+    }
 
 
 class UsersUpdate(SuccessMessageMixin, RedirectToLoginMixin,
                   SelfUserCheckMixin, UpdateView):
-    template_name = 'users/update.html'
+    template_name = 'manage/update.html'
     model = User
     success_url = reverse_lazy('users_index')
-    context_object_name = 'user'
+    context_object_name = 'current_object'
     pk_url_kwarg = 'user_id'
     form_class = UpdateForm
     success_message = _('User updated successfully')
     self_delete_error_message = _("You're cannot update this user")
+    extra_context = {
+        'page_title': _('Update user'),
+        'url_path': 'users_update',
+    }
 
 
 class UsersDelete(SuccessMessageMixin, RedirectToLoginMixin,
                   SelfUserCheckMixin, ProtectedObjectCheckMixin, DeleteView):
-    template_name = 'users/delete.html'
+    template_name = 'manage/delete.html'
     model = User
     success_url = reverse_lazy('users_index')
-    context_object_name = 'user'
+    context_object_name = 'current_object'
     pk_url_kwarg = 'user_id'
     success_message = _('User deleted successfully')
     self_delete_error_message = _("You're cannot delete this user")
     protected_redirect_to = reverse_lazy('users_index')
     protected_message = _("Can't delete assigned user")
+    extra_context = {
+        'object_group': _('User')
+    }

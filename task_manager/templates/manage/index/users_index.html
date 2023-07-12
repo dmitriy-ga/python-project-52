@@ -2,7 +2,7 @@
 {% load bootstrap4 i18n %}
 
 {% block content %}
-<h1>{% translate "Task Manager - Users" %}</h1>
+<h1>{% translate "Task Manager" %} - {% translate "Users" %}</h1>
 <a class="btn btn-primary btn-lg" href="{% url 'users_create' %}">{% translate "Create user" %}</a>
 
 {% if users %}

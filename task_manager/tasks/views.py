@@ -12,24 +12,28 @@ from django.utils.translation import gettext as _
 
 
 class TasksIndex(RedirectToLoginMixin, FilterView):
-    template_name = 'tasks/index.html'
+    template_name = 'manage/index/tasks_index.html'
     filterset_class = TasksFilter
     context_object_name = 'tasks'
 
 
 class TasksShow(RedirectToLoginMixin, DetailView):
-    template_name = 'tasks/show.html'
+    template_name = 'manage/show_task.html'
     model = TaskModel
     context_object_name = 'task'
     pk_url_kwarg = 'task_id'
 
 
 class TasksCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
-    template_name = 'tasks/create.html'
+    template_name = 'manage/create.html'
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
     fields = ['name', 'description', 'status', 'executor', 'labels']
     success_message = _('Task created successfully')
+    extra_context = {
+        'page_title': _('Create task'),
+        'url_path': 'tasks_create',
+    }
 
     def form_valid(self, form):
         form.instance.author_id = self.request.user.id
@@ -37,22 +41,29 @@ class TasksCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
 
 
 class TasksUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
-    template_name = 'tasks/update.html'
+    template_name = 'manage/update.html'
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
     fields = ['name', 'description', 'status', 'executor', 'labels']
-    context_object_name = 'task'
+    context_object_name = 'current_object'
     pk_url_kwarg = 'task_id'
     success_message = _('Task updated successfully')
+    extra_context = {
+        'page_title': _('Update task'),
+        'url_path': 'tasks_update',
+    }
 
 
 class TasksDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
-    template_name = 'tasks/delete.html'
+    template_name = 'manage/delete.html'
     model = TaskModel
     success_url = reverse_lazy('tasks_index')
-    context_object_name = 'task'
+    context_object_name = 'current_object'
     pk_url_kwarg = 'task_id'
     success_message = _('Task deleted successfully')
+    extra_context = {
+        'object_group': _('Task')
+    }
 
     def dispatch(self, request, *args, **kwargs):
         # Only author can delete task

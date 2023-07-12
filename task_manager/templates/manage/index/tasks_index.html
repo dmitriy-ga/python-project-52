@@ -2,7 +2,7 @@
 {% load bootstrap4 i18n %}
 
 {% block content %}
-<h1>{% translate "Task Manager - Tasks" %}</h1>
+<h1>{% translate "Task Manager" %} - {% translate "Tasks" %}</h1>
 <a class="btn btn-primary btn-lg" href="{% url 'tasks_create' %}">{% translate "Create task" %}</a>
 
 {% if tasks %}

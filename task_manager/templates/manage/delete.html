@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1>{% translate "Sure delete?" %}</h1>
-<h2>{% translate "Status" %}: {{ status }}</h2>
+<h2>{{ object_group }}: {{ current_object }}</h2>
 <form method="post">
     {% csrf_token %}
     <input type="submit" value="{% translate 'Yes, delete' %}">
