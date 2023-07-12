@@ -22,6 +22,7 @@ class LabelsCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     extra_context = {
         'page_title': _('Create label'),
         'url_path': 'labels_create',
+        'button_text': _('Create'),
     }
 
 

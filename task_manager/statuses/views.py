@@ -22,6 +22,7 @@ class StatusesCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     extra_context = {
         'page_title': _('Create status'),
         'url_path': 'statuses_create',
+        'button_text': _('Create'),
     }
 
 

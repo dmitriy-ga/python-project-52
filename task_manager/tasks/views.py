@@ -33,6 +33,7 @@ class TasksCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     extra_context = {
         'page_title': _('Create task'),
         'url_path': 'tasks_create',
+        'button_text': _('Create'),
     }
 
     def form_valid(self, form):

@@ -24,6 +24,7 @@ class UsersCreate(SuccessMessageMixin, CreateView):
     extra_context = {
         'page_title': _('Create user'),
         'url_path': 'users_create',
+        'button_text': _('Signup'),
     }
 
 
