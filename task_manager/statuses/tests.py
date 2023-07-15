@@ -1,6 +1,6 @@
 import json
 from django.test import TestCase
-from .models import StatusModel
+from .models import Status
 from task_manager.users.models import User
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -32,7 +32,7 @@ class TestStatuses(TestCase):
                                     follow=True)
         self.assertContains(response, success_message)
 
-        created_status = StatusModel.objects.get(
+        created_status = Status.objects.get(
             name=self.status_example_after['name']
         )
         self.assertEqual(created_status.name, self.status_example_after['name'])
@@ -49,7 +49,7 @@ class TestStatuses(TestCase):
                                     follow=True)
         self.assertContains(response, success_message)
 
-        updated_status = StatusModel.objects.get(
+        updated_status = Status.objects.get(
             name=self.status_example_after['name']
         )
         self.assertEqual(updated_status.name, self.status_example_after['name'])
@@ -62,8 +62,8 @@ class TestStatuses(TestCase):
         status_delete_url = reverse_lazy('statuses_delete', args=[1])
         taken_status_delete_url = reverse_lazy('statuses_delete', args=[2])
 
-        status_to_delete = StatusModel.objects.get(id=1)
-        taken_status = StatusModel.objects.get(id=2)
+        status_to_delete = Status.objects.get(id=1)
+        taken_status = Status.objects.get(id=2)
 
         # Checking deletable status
         response = self.client.get(status_delete_url)

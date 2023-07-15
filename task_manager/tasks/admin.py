@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import TaskModel
+from .models import Task
 
 
-@admin.register(TaskModel)
+@admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     search_fields = ['name', ]

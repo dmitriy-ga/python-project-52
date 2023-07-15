@@ -1,6 +1,6 @@
 import json
 from django.test import TestCase
-from .models import LabelModel
+from .models import Label
 from task_manager.users.models import User
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -32,7 +32,7 @@ class TestLabel(TestCase):
                                     follow=True)
         self.assertContains(response, success_message)
 
-        created_label = LabelModel.objects.get(
+        created_label = Label.objects.get(
             name=self.label_example_after['name']
         )
         self.assertEqual(created_label.name, self.label_example_after['name'])
@@ -49,7 +49,7 @@ class TestLabel(TestCase):
                                     follow=True)
         self.assertContains(response, success_message)
 
-        updated_label = LabelModel.objects.get(
+        updated_label = Label.objects.get(
             name=self.label_example_after['name']
         )
         self.assertEqual(updated_label.name, self.label_example_after['name'])
@@ -62,8 +62,8 @@ class TestLabel(TestCase):
         label_delete_url = reverse_lazy('labels_delete', args=[1])
         taken_label_delete_url = reverse_lazy('labels_delete', args=[2])
 
-        label_to_delete = LabelModel.objects.get(id=1)
-        taken_label = LabelModel.objects.get(id=2)
+        label_to_delete = Label.objects.get(id=1)
+        taken_label = Label.objects.get(id=2)
 
         # Checking deletable label
         response = self.client.get(label_delete_url)

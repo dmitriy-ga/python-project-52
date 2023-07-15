@@ -6,7 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import RedirectToLoginMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .models import TaskModel
+from .models import Task
 from .filters import TasksFilter
 from django.utils.translation import gettext as _
 
@@ -19,14 +19,14 @@ class TasksIndex(RedirectToLoginMixin, FilterView):
 
 class TasksShow(RedirectToLoginMixin, DetailView):
     template_name = 'manage/show_task.html'
-    model = TaskModel
+    model = Task
     context_object_name = 'task'
     pk_url_kwarg = 'task_id'
 
 
 class TasksCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
     template_name = 'manage/create.html'
-    model = TaskModel
+    model = Task
     success_url = reverse_lazy('tasks_index')
     fields = ['name', 'description', 'status', 'executor', 'labels']
     success_message = _('Task created successfully')
@@ -43,7 +43,7 @@ class TasksCreate(SuccessMessageMixin, RedirectToLoginMixin, CreateView):
 
 class TasksUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
     template_name = 'manage/update.html'
-    model = TaskModel
+    model = Task
     success_url = reverse_lazy('tasks_index')
     fields = ['name', 'description', 'status', 'executor', 'labels']
     context_object_name = 'current_object'
@@ -57,7 +57,7 @@ class TasksUpdate(SuccessMessageMixin, RedirectToLoginMixin, UpdateView):
 
 class TasksDelete(SuccessMessageMixin, RedirectToLoginMixin, DeleteView):
     template_name = 'manage/delete.html'
-    model = TaskModel
+    model = Task
     success_url = reverse_lazy('tasks_index')
     context_object_name = 'current_object'
     pk_url_kwarg = 'task_id'

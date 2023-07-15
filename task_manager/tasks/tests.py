@@ -1,6 +1,6 @@
 import json
 from django.test import TestCase
-from task_manager.tasks.models import TaskModel
+from task_manager.tasks.models import Task
 from task_manager.users.models import User
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -32,7 +32,7 @@ class TestTasks(TestCase):
                                     follow=True)
         self.assertContains(response, success_message)
 
-        created_task = TaskModel.objects.get(
+        created_task = Task.objects.get(
             name=self.task_example_after['name']
         )
         self.assertEqual(created_task.name, self.task_example_after['name'])
@@ -48,14 +48,14 @@ class TestTasks(TestCase):
                                     follow=True)
         self.assertContains(response, success_message)
 
-        updated_task = TaskModel.objects.get(
+        updated_task = Task.objects.get(
             name=self.task_example_after['name']
         )
         self.assertEqual(updated_task.name, self.task_example_after['name'])
 
     def test_tasks_delete(self):
-        self_task_in_fixture = TaskModel.objects.get(id=1)
-        non_self_task_in_fixture = TaskModel.objects.get(id=2)
+        self_task_in_fixture = Task.objects.get(id=1)
+        non_self_task_in_fixture = Task.objects.get(id=2)
 
         success_message = _('Task deleted successfully')
         protected_message = _('Only author can delete this task')
@@ -86,8 +86,8 @@ class TestTasks(TestCase):
 
     def test_tasks_filter(self):
         task_index_url = reverse_lazy('tasks_index')
-        task_example = TaskModel.objects.get(id='1')
-        filter_task_example = TaskModel.objects.get(id='2')
+        task_example = Task.objects.get(id='1')
+        filter_task_example = Task.objects.get(id='2')
 
         response = self.client.get(task_index_url, {'status': 2,
                                                     'executor': 2})

@@ -36,28 +36,28 @@
   }
 },  
 {
-  "model": "statuses.statusmodel",
+  "model": "statuses.status",
   "pk": 1,
   "fields": {
     "name": "Status_example1"
   }
 },
 {
-  "model": "statuses.statusmodel",
+  "model": "statuses.status",
   "pk": 2,
   "fields": {
     "name": "Status_example2"
   }
 },
 {
-  "model": "statuses.statusmodel",
+  "model": "statuses.status",
   "pk": 3,
   "fields": {
     "name": "Status_example3"
   }
 },
 {
-  "model": "tasks.taskmodel",
+  "model": "tasks.task",
   "pk": 1,
   "fields": {
     "name": "Task_example",
@@ -68,7 +68,7 @@
   }
 },
 {
-  "model": "tasks.taskmodel",
+  "model": "tasks.task",
   "pk": 2,
   "fields": {
     "name": "Filtertest2",
@@ -87,14 +87,14 @@
   }
 },
 {
-  "model": "labels.labelmodel",
+  "model": "labels.label",
   "pk": 1,
   "fields": {
     "name": "Label_example1"
   }
 },
 {
-  "model": "labels.labelmodel",
+  "model": "labels.label",
   "pk": 2,
   "fields": {
     "name": "Label_example2"

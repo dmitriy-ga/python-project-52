@@ -1,11 +1,11 @@
 from django.db import models
 from task_manager.users.models import User
-from task_manager.statuses.models import StatusModel
-from task_manager.labels.models import LabelModel
+from task_manager.statuses.models import Status
+from task_manager.labels.models import Label
 from django.utils.translation import gettext_lazy as _
 
 
-class TaskModel(models.Model):
+class Task(models.Model):
     objects = models.Manager()
     name = models.CharField(max_length=200, unique=True,
                             verbose_name=_('name'))
@@ -19,10 +19,10 @@ class TaskModel(models.Model):
                                  related_name='executor',
                                  verbose_name=_('executor'))
 
-    status = models.ForeignKey(StatusModel, on_delete=models.PROTECT,
+    status = models.ForeignKey(Status, on_delete=models.PROTECT,
                                related_name='status', verbose_name=_('status'))
 
-    labels = models.ManyToManyField(LabelModel, through='LabelsThrough',
+    labels = models.ManyToManyField(Label, through='LabelsThrough',
                                     through_fields=('task', 'label'),
                                     blank=True, verbose_name=_('labels'))
 
@@ -31,5 +31,5 @@ class TaskModel(models.Model):
 
 
 class LabelsThrough(models.Model):
-    label = models.ForeignKey(LabelModel, on_delete=models.PROTECT)
-    task = models.ForeignKey(TaskModel, on_delete=models.CASCADE)
+    label = models.ForeignKey(Label, on_delete=models.PROTECT)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
